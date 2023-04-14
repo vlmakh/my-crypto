@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { theme } from 'utils/theme';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { HomePage } from 'pages/Home';
+import { HomePage } from 'pages/HomePage';
 import { ProductsPage } from 'pages/Products';
 import { Routes, Route } from 'react-router-dom';
 
