@@ -57,7 +57,7 @@ export const MyLink = styled.a`
   }
 `;
 
-export const LoginBar = styled.div`
+export const SideBar = styled.div`
     position: absolute;
     top: 0;
     right: 0;

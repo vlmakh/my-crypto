@@ -5,19 +5,19 @@ import {
   Nav,
   Footer,
   MyLink,
-  LoginBar,
+  SideBar,
 } from './SharedLayout.styled';
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { useState } from 'react';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 
 export const SharedLayout = () => {
-  const [showLoginBar, setShowLoginBar] = useState('100%');
+  const [showSideBar, setShowSideBar] = useState('100%');
 
-  const toggleLoginBar = () => {
-    if (showLoginBar === 0) setShowLoginBar('100%');
+  const toggleSideBar = () => {
+    if (showSideBar === 0) setShowSideBar('100%');
     else {
-      setShowLoginBar(0);
+      setShowSideBar(0);
     }
   };
 
@@ -26,7 +26,7 @@ export const SharedLayout = () => {
       <Header>
         <Nav>
           <Link to="/">Home</Link>
-          <button onClick={toggleLoginBar}>Login</button>
+          <button onClick={toggleSideBar}>Login</button>
         </Nav>
       </Header>
       <Outlet />
@@ -37,9 +37,9 @@ export const SharedLayout = () => {
         <p>2023</p>
         <MyLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyLink>
       </Footer>
-      <LoginBar show={showLoginBar}>
+      <SideBar show={showSideBar}>
         <LoginForm />
-      </LoginBar>
+      </SideBar>
     </Layout>
   );
 };
