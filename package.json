@@ -2,7 +2,7 @@
   "name": "react-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vlmakh.github.io/my-crypto/",
+  "homepage": "https://my-crypto-nu.vercel.app/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -10,6 +10,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.5",
+    "firebase": "^9.19.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-paginate": "^8.2.0",

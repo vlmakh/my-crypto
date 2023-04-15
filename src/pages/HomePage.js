@@ -23,7 +23,7 @@ export const HomePage = () => {
     coinList(currentPage)
       .then(data => {
         setList(data);
-        setTotalPages(10);
+        setTotalPages(100);
       })
       .catch(error => {});
   }, [currentPage]);
