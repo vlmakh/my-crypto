@@ -8,7 +8,7 @@ import {
   Label,
   Button,
 } from './LoginForm.styled';
-import { login, loginGoogle } from 'utils/loginOperations';
+import { login, loginGoogle, loginFacebook } from 'utils/loginOperations';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
 
@@ -50,8 +50,19 @@ export const LoginForm = ({ setShowSideBar }) => {
       });
   };
 
-  const handleLoginFacebook = () => {
-    console.log('login Facebook');
+  const handleLoginFacebook = async () => {
+    loginFacebook()
+      .then(({ user, token }) =>
+        setUser({
+          email: user.email,
+          token,
+          name: user.displayName,
+          id: user.uid,
+        })
+      )
+      .finally(() => {
+        setShowSideBar('110%');
+      });
   };
 
   const handleLoginPhone = () => {

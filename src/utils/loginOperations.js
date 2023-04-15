@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
 import { auth } from './firebase';
@@ -28,8 +29,9 @@ export const login = async credentials => {
       credentials.email,
       credentials.password
     );
-    const { email, accessToken } = response.user;
-    return { email, accessToken };
+
+    const { email, accessToken, uid } = response.user;
+    return { email, accessToken, uid };
   } catch (error) {
     console.log(error.code, error.message);
   }
@@ -42,6 +44,21 @@ export const loginGoogle = async () => {
     const response = await signInWithPopup(auth, provider);
     const user = response.user;
     const credential = GoogleAuthProvider.credentialFromResult(response);
+    const token = credential.accessToken;
+
+    return { user, token };
+  } catch (error) {
+    console.log(error.code, error.message);
+  }
+};
+
+export const loginFacebook = async () => {
+  try {
+    const provider = new FacebookAuthProvider();
+
+    const response = await signInWithPopup(auth, provider);
+    const user = response.user;
+    const credential = FacebookAuthProvider.credentialFromResult(response);
     const token = credential.accessToken;
 
     return { user, token };
