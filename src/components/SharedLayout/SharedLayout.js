@@ -26,7 +26,7 @@ export const SharedLayout = () => {
   };
 
   const handleLogout = () => {
-    logout().then(() => setUser({ isLogin: false }));
+    logout().then(() => setUser({}));
   };
 
   return (
@@ -34,7 +34,7 @@ export const SharedLayout = () => {
       <Header>
         <Nav>
           <Link to="/">Home</Link>
-          {user.isLogin ? (
+          {user.email ? (
             <>
               <p>Hello, {user.email} </p>{' '}
               <button onClick={handleLogout}>Logout</button>

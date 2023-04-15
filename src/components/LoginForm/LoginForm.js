@@ -12,6 +12,9 @@ import { login } from 'utils/loginOperations';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
 
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
+
 let schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
@@ -23,7 +26,11 @@ export const LoginForm = ({ setShowSideBar }) => {
   const handleLogin = (values, { resetForm }) => {
     login(values)
       .then(data =>
-        setUser({ email: data.email, token: data.accessToken, isLogin: true })
+        setUser({
+          email: data.email,
+          token: data.accessToken,
+          id: data.uid,
+        })
       )
       .finally(() => {
         resetForm();
@@ -32,7 +39,27 @@ export const LoginForm = ({ setShowSideBar }) => {
   };
 
   const handleLoginGoogle = () => {
-    console.log('login Google');
+    // loginGoogle();
+
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+
+        setUser({
+          email: user.email,
+          token: token,
+          name: user.displayName,
+          id: user.uid,
+        });
+      })
+      .catch(error => console.log(error.code, error.message))
+      .finally(() => {
+        setShowSideBar('110%');
+      });
   };
 
   const handleLoginFacebook = () => {

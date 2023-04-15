@@ -4,11 +4,19 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { HomePage } from 'pages/HomePage';
 import { ProductsPage } from 'pages/Products';
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { UserData } from 'utils/context';
 
+const savedUser = JSON.parse(localStorage.getItem('mycrypto'));
+
 export const App = () => {
-  const [user, setUser] = useState({isLogin: false});
+  const [user, setUser] = useState(savedUser ?? {});
+
+  useEffect(() => {
+    localStorage.setItem('mycrypto', JSON.stringify(user));
+  }, [user]);
+  
+  console.log(user.email)
 
   return (
     <ThemeProvider theme={theme}>
