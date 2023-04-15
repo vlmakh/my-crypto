@@ -20,21 +20,19 @@ export const Item = styled.li`
   border: 1px solid grey;
 `;
 
-export const Name = styled.p`
-    
-`
+export const Name = styled.p``;
 
 export const Symbol = styled.p`
-    text-transform: uppercase;
-    font-size: 24px;
-    font-weight: 700;
-`   
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 700;
+`;
 
 export const Price = styled.p`
-    margin-left: auto;
-    margin-right: 24px;
-`
+  margin-left: auto;
+  margin-right: 24px;
+`;
 
 export const Percentage = styled.p`
-    margin-left: auto;
-`
+  margin-left: auto;
+`;
