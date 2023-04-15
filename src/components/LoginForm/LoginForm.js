@@ -8,6 +8,7 @@ import {
   Label,
   Button,
 } from './LoginForm.styled';
+import { login } from 'utils/loginOperations';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -15,9 +16,10 @@ let schema = yup.object().shape({
 });
 
 export const LoginForm = () => {
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
+  const handleLogin = (values, { resetForm }) => {
+    login(values)
+      .then(a => console.log(a))
+      .finally(() => resetForm());
   };
 
   const handleLoginGoogle = () => {
@@ -34,7 +36,7 @@ export const LoginForm = () => {
 
   return (
     <Formik
-      onSubmit={handleSubmit}
+      onSubmit={handleLogin}
       initialValues={{
         email: '',
         password: '',
