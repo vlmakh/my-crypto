@@ -19,14 +19,14 @@ export const HomePage = () => {
     ? Number(searchQuery.get('page'))
     : 1;
 
-  // useEffect(() => {
-  //   coinList(currentPage)
-  //     .then(data => {
-  //       setList(data);
-  //       setTotalPages(100);
-  //     })
-  //     .catch(error => {});
-  // }, [currentPage]);
+  useEffect(() => {
+    coinList(currentPage)
+      .then(data => {
+        setList(data);
+        setTotalPages(100);
+      })
+      .catch(error => {});
+  }, [currentPage]);
 
   const handlePageClick = e => {
     setSearchQuery({ page: e.selected + 1 });

@@ -8,12 +8,9 @@ import {
   Label,
   Button,
 } from './LoginForm.styled';
-import { login } from 'utils/loginOperations';
+import { login, loginGoogle } from 'utils/loginOperations';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
-
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '../../utils/firebase';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -39,24 +36,15 @@ export const LoginForm = ({ setShowSideBar }) => {
   };
 
   const handleLoginGoogle = () => {
-    // loginGoogle();
-
-    const provider = new GoogleAuthProvider();
-
-    signInWithPopup(auth, provider)
-      .then(result => {
-        const user = result.user;
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-
+    loginGoogle()
+      .then(({ user, token }) =>
         setUser({
           email: user.email,
-          token: token,
+          token,
           name: user.displayName,
           id: user.uid,
-        });
-      })
-      .catch(error => console.log(error.code, error.message))
+        })
+      )
       .finally(() => {
         setShowSideBar('110%');
       });
