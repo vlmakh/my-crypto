@@ -13,8 +13,6 @@ export const HomePage = () => {
     ? Number(searchQuery.get('page'))
     : 1;
 
-  console.log(totalPages);
-
   useEffect(() => {
     coinList(currentPage)
       .then(data => {
