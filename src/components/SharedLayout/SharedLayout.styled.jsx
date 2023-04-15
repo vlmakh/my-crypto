@@ -59,14 +59,14 @@ export const MyLink = styled.a`
 
 export const SideBar = styled.div`
     position: absolute;
-    top: 0;
+    top: 32px;
     right: 0;
     display: grid;
     place-items: center;
-
-    width: 200px;
-    height: 100%;
-    background-color: aqua;
+        
+    height: calc(100% - 68px);
+    background-color: white;
+    box-shadow: -4px 0 8px -4px rgba(0, 0, 0, 0.6);
 
     transform: translateX(${p => p.show});
 

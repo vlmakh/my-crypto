@@ -12,10 +12,10 @@ import { useState } from 'react';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 
 export const SharedLayout = () => {
-  const [showSideBar, setShowSideBar] = useState('100%');
+  const [showSideBar, setShowSideBar] = useState('110%');
 
   const toggleSideBar = () => {
-    if (showSideBar === 0) setShowSideBar('100%');
+    if (showSideBar === 0) setShowSideBar('110%');
     else {
       setShowSideBar(0);
     }
