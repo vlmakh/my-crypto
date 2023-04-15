@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 
 export const Layout = styled.div`
+  position: relative;
+  overflow: hidden;
+
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: 100vh;
@@ -21,6 +24,7 @@ export const Header = styled.div`
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 100%;
   gap: ${p => p.theme.space[4]}px;
 `;
@@ -51,4 +55,20 @@ export const MyLink = styled.a`
   :focus {
     color: ${p => p.theme.colors.accent};
   }
+`;
+
+export const LoginBar = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: grid;
+    place-items: center;
+
+    width: 200px;
+    height: 100%;
+    background-color: aqua;
+
+    transform: translateX(${p => p.show});
+
+    transition: transform 300ms ease-in;
 `;
