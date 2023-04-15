@@ -1,5 +1,11 @@
 import { Box } from 'components/Box/Box';
-import { List, Item, Name, Price } from 'components/CoinList/CoinList.styled';
+import {
+  List,
+  Item,
+  Name,
+  Symbol,
+  Price,
+} from 'components/CoinList/CoinList.styled';
 import { coinList } from 'utils/api';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -41,9 +47,12 @@ export const HomePage = () => {
           <Item key={coin.id}>
             <img src={coin.image} alt={coin.name} width="60" />
 
-            <Name>{coin.name}</Name>
-            <Price>{coin.current_price}</Price>
+            <Box ml={5} textAlign="left">
+              <Symbol>{coin.symbol}</Symbol>
+              <Name>{coin.name}</Name>
+            </Box>
 
+            <Price>{coin.current_price}</Price>
             <p>{coin.price_change_percentage_24h.toFixed(2)}%</p>
           </Item>
         ))}

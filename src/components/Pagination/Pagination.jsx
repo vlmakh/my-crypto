@@ -6,10 +6,9 @@ export const PaginationStyled = styled(ReactPaginate)`
   list-style: none;
   justify-content: center;
   margin-top: 16px;
-  font-size: ${p => p.theme.fontSizes.s};
-  font-weight: 700;
+  font-size: 16px;
 
-  @media (max-width: 479.98px) {
+  @media and screen and (max-width: 479.98px) {
     flex-wrap: wrap;
   }
 

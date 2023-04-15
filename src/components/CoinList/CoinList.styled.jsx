@@ -21,8 +21,14 @@ export const Item = styled.li`
 `;
 
 export const Name = styled.p`
-    margin-left: 24px;
+    
 `
+
+export const Symbol = styled.p`
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 700;
+`   
 
 export const Price = styled.p`
     margin-left: auto;
