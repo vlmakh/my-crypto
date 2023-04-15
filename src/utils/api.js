@@ -4,9 +4,9 @@ const MAIN_URL = process.env.REACT_APP_MAIN_URL;
 
 const currency = 'USD';
 
-export const coinList = async () => {
+export const coinList = async page => {
   const response = await axios.get(
-    `${MAIN_URL}/markets?vs_currency=USD&per_page=10&page=1`
+    `${MAIN_URL}/markets?vs_currency=USD&per_page=10&page=${page}`
   );
   return response.data;
 };

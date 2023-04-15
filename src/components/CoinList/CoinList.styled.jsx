@@ -5,7 +5,7 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 8px;
   list-style: none;
-  width: 600px;
+  width: 480px;
   margin: 0 auto;
   padding: 16px 0;
 `;
@@ -19,3 +19,16 @@ export const Item = styled.li`
   border-radius: 8px;
   border: 1px solid grey;
 `;
+
+export const Name = styled.p`
+    margin-left: 24px;
+`
+
+export const Price = styled.p`
+    margin-left: auto;
+    margin-right: 24px;
+`
+
+export const Percentage = styled.p`
+    margin-left: auto;
+`
