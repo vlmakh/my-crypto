@@ -10,8 +10,12 @@ import {
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { useState } from 'react';
 import { LoginForm } from 'components/LoginForm/LoginForm';
+import { useContext } from 'react';
+import { UserData } from 'utils/context';
+import { logout } from 'utils/loginOperations';
 
 export const SharedLayout = () => {
+  const { user, setUser } = useContext(UserData);
   const [showSideBar, setShowSideBar] = useState('110%');
 
   const toggleSideBar = () => {
@@ -21,12 +25,23 @@ export const SharedLayout = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout().then(() => setUser({ isLogin: false }));
+  };
+
   return (
     <Layout>
       <Header>
         <Nav>
           <Link to="/">Home</Link>
-          <button onClick={toggleSideBar}>Login</button>
+          {user.isLogin ? (
+            <>
+              <p>Hello, {user.email} </p>{' '}
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          ) : (
+            <button onClick={toggleSideBar}>Login</button>
+          )}
         </Nav>
       </Header>
       <Outlet />
@@ -38,7 +53,7 @@ export const SharedLayout = () => {
         <MyLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyLink>
       </Footer>
       <SideBar show={showSideBar}>
-        <LoginForm />
+        <LoginForm setShowSideBar={setShowSideBar} />
       </SideBar>
     </Layout>
   );

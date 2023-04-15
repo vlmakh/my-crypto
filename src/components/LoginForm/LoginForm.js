@@ -9,17 +9,26 @@ import {
   Button,
 } from './LoginForm.styled';
 import { login } from 'utils/loginOperations';
+import { useContext } from 'react';
+import { UserData } from 'utils/context';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
 
-export const LoginForm = () => {
+export const LoginForm = ({ setShowSideBar }) => {
+  const { setUser } = useContext(UserData);
+
   const handleLogin = (values, { resetForm }) => {
     login(values)
-      .then(a => console.log(a))
-      .finally(() => resetForm());
+      .then(data =>
+        setUser({ email: data.email, token: data.accessToken, isLogin: true })
+      )
+      .finally(() => {
+        resetForm();
+        setShowSideBar('110%');
+      });
   };
 
   const handleLoginGoogle = () => {

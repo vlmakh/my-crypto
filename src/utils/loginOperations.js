@@ -36,3 +36,13 @@ export const login = async credentials => {
     console.log(errorCode, errorMessage);
   }
 };
+
+export const logout = async () => {
+  try {
+    await auth.signOut();
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
+};
