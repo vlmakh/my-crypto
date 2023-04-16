@@ -10,17 +10,19 @@ import {
   HiOutlineUserAdd,
 } from 'react-icons/hi';
 import { LoginEmailForm } from './LoginEmailForm';
+import { LoginPhoneForm } from './LoginPhoneForm';
 import { RegisterForm } from './RegisterForm';
 
 export const LoginBtnsBox = ({ toggleSideBar }) => {
   const { setUser } = useContext(UserData);
-  const [btnBox, setBtnBox] = useState(true);
-  const [emailForm, setEmailForm] = useState(false);
-  const [registerForm, setRegisterForm] = useState(false);
+  const [showBtnBox, setShowBtnBox] = useState(true);
+  const [showEmailForm, setShowEmailForm] = useState(false);
+  const [showPhoneForm, setShowPhoneForm] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   const handleLogin = () => {
-    setEmailForm(!emailForm);
-    setBtnBox(!btnBox);
+    setShowEmailForm(!showEmailForm);
+    setShowBtnBox(!showBtnBox);
   };
 
   const handleLoginGoogle = () => {
@@ -54,17 +56,18 @@ export const LoginBtnsBox = ({ toggleSideBar }) => {
   };
 
   const handleLoginPhone = () => {
-    console.log('login Phone');
+    setShowPhoneForm(!showPhoneForm);
+    setShowBtnBox(!showBtnBox);
   };
 
   const handleRegisterForm = () => {
-    setRegisterForm(!registerForm);
-    setBtnBox(!btnBox);
+    setShowRegisterForm(!showRegisterForm);
+    setShowBtnBox(!showBtnBox);
   };
 
   return (
     <>
-      {btnBox && (
+      {showBtnBox && (
         <BtnsBox>
           <Button type="button" onClick={handleLogin}>
             <HiOutlineMail size="20" />
@@ -93,16 +96,23 @@ export const LoginBtnsBox = ({ toggleSideBar }) => {
         </BtnsBox>
       )}
 
-      {emailForm && (
+      {showEmailForm && (
         <LoginEmailForm
           handleLogin={handleLogin}
           toggleSideBar={toggleSideBar}
         />
       )}
 
-      {registerForm && (
+      {showRegisterForm && (
         <RegisterForm
           handleRegisterForm={handleRegisterForm}
+          toggleSideBar={toggleSideBar}
+        />
+      )}
+
+      {showPhoneForm && (
+        <LoginPhoneForm
+          handleLoginPhone={handleLoginPhone}
           toggleSideBar={toggleSideBar}
         />
       )}

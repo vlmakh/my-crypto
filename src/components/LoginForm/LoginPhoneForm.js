@@ -9,6 +9,7 @@ import {
 } from './LoginForm.styled';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
+import { IoArrowBack } from 'react-icons/io5';
 
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
@@ -18,7 +19,7 @@ let schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-export const LoginPhoneForm = ({ toggleSideBar }) => {
+export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
   const { setUser } = useContext(UserData);
 
   const generateRecapcha = () => {
@@ -54,9 +55,10 @@ export const LoginPhoneForm = ({ toggleSideBar }) => {
       });
   };
 
-  const handleLoginPhone = () => {
-    console.log('login Phone');
-  };
+  // const handleLoginPhone = () => {
+  //   console.log('login Phone');
+  //   toggleSideBar();
+  // };
 
   return (
     <Formik
@@ -68,18 +70,29 @@ export const LoginPhoneForm = ({ toggleSideBar }) => {
       validationSchema={schema}
     >
       <StyledForm>
+        <Button type="button" onClick={handleLoginPhone}>
+          <IoArrowBack size="20" />
+          Back
+        </Button>
+
         <Label htmlFor="email">
-          <span>phone</span>
-          <StyledField name="phone" type="text" placeholder=" "></StyledField>
+          <StyledField
+            name="phone"
+            type="text"
+            placeholder="+380 XX XXX-XXXX"
+          ></StyledField>
           <StyledErrorMsg component="div" name="phone" />
         </Label>
 
+        <Button type="button" id="sign-in-button">
+          Send code
+        </Button>
+
         <Label htmlFor="otp">
-          <span>otp </span>
           <StyledField
             name="otp"
             type="text"
-            placeholder=" "
+            placeholder="XXXXXX"
             autoComplete="off"
           ></StyledField>
           <StyledErrorMsg component="div" name="otp" />
