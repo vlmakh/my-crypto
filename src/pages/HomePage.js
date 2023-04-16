@@ -5,6 +5,7 @@ import {
   Name,
   Symbol,
   Price,
+  Percentage,
 } from 'components/CoinList/CoinList.styled';
 import { coinList } from 'utils/api';
 import { useEffect, useState } from 'react';
@@ -53,7 +54,9 @@ export const HomePage = () => {
             </Box>
 
             <Price>{coin.current_price}</Price>
-            <p>{coin.price_change_percentage_24h.toFixed(2)}%</p>
+            <Percentage profit={coin.price_change_percentage_24h}>
+              {coin.price_change_percentage_24h.toFixed(2)}%
+            </Percentage>
           </Item>
         ))}
       </List>

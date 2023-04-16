@@ -34,5 +34,8 @@ export const Price = styled.p`
 `;
 
 export const Percentage = styled.p`
-  margin-left: auto;
+  /* margin-left: auto; */
+  width: 60px;
+  text-align: right;
+  color: ${p => (p.profit >= 0 ? "green" : "red")}
 `;
