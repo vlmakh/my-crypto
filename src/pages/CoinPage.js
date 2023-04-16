@@ -25,8 +25,8 @@ export const CoinPage = () => {
     <Box mt={5}>
       <Link to={backLink.current}>Back</Link>
       {coin && (
-        <Box textAlign="center">
-          <img src={coin?.image.large} alt={coin?.name} height="100" />
+        <Box textAlign="center" mt={5}>
+          <img src={coin?.image.large} alt={coin?.name} width="100" />
           <p>{coin.name}</p>
           <p>{parse(coin?.description.en)}</p>
         </Box>
