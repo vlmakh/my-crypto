@@ -22,7 +22,7 @@ export const register = async credentials => {
   }
 };
 
-export const login = async credentials => {
+export const loginEmail = async credentials => {
   try {
     const response = await signInWithEmailAndPassword(
       auth,

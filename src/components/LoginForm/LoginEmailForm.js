@@ -7,7 +7,7 @@ import {
   Label,
   Button,
 } from './LoginForm.styled';
-import { login } from 'utils/loginOperations';
+import { loginEmail } from 'utils/loginOperations';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
 import { IoArrowBack } from 'react-icons/io5';
@@ -21,7 +21,7 @@ export const LoginEmailForm = ({ handleLogin, toggleSideBar }) => {
   const { setUser } = useContext(UserData);
 
   const handleLoginEmail = (values, { resetForm }) => {
-    login(values)
+    loginEmail(values)
       .then(data =>
         setUser({
           email: data.email,
