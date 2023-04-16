@@ -21,9 +21,20 @@ export const CoinPage = () => {
   }, [params.coinId]);
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center">
+    <Box mt={5}>
       <Link to={backLink.current}>Back</Link>
-      {coin && <p>{coin.name}</p>}
+      {coin && (
+        <Box textAlign="center">
+          <img
+            src={coin?.image.large}
+            alt={coin?.name}
+            height="100"
+            style={{ marginBottom: 20 }}
+          />
+          <p>{coin.name}</p>
+          <p>{coin?.description.en.split('. ')[0]}</p>
+        </Box>
+      )}
     </Box>
   );
 };
