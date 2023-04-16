@@ -40,7 +40,7 @@ export const SharedLayout = () => {
           <Link to="/">Home</Link>
           {user.token ? (
             <>
-              <p>Hello, {user.email} </p>{' '}
+              <p>Hello, {user.name} </p>{' '}
               <button onClick={handleLogout}>Logout</button>
             </>
           ) : (

@@ -13,6 +13,7 @@ import { IoArrowBack } from 'react-icons/io5';
 
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
+import { Box } from 'components/Box/Box';
 
 let schema = yup.object().shape({
   otp: yup.string().length(6).required(),
@@ -27,10 +28,7 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
       'sign-in-button',
       {
         size: 'invisible',
-        callback: response => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          // onSignInSubmit();
-        },
+        callback: response => {},
       },
       auth
     );
@@ -38,15 +36,12 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
 
   const requestOTP = values => {
     generateRecapcha();
-    console.log(values);
 
     const phoneNumber = values.phone;
     const appVerifier = window.recaptchaVerifier;
 
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
       .then(confirmationResult => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
       })
       .catch(error => {
@@ -54,32 +49,33 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
       });
   };
 
-  const confirmOTP = values => {
+  const confirmOTP = (values, { resetForm }) => {
     setOTP(values.otp);
-    console.log('OTP', OTP);
 
     const confirmationResult = window.confirmationResult;
     confirmationResult
       .confirm(OTP)
       .then(result => {
-        // User signed in successfully.
         const user = result.user;
-        // ...
+
         setUser({
           phone: user.phoneNumber,
           token: user.refreshToken,
-          id: user.localId,
+          id: user.uid,
           name: user.phoneNumber,
         });
       })
       .catch(error => {
-        // User couldn't sign in (bad verification code?)
-        // ...
+        console.log(error.message);
+      })
+      .finally(() => {
+        resetForm();
+        toggleSideBar();
       });
   };
 
   return (
-    <>
+    <Box>
       <Formik
         onSubmit={requestOTP}
         initialValues={{
@@ -129,6 +125,6 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
           <Button type="submit">Login</Button>
         </StyledForm>
       </Formik>
-    </>
+    </Box>
   );
 };
