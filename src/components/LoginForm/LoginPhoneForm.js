@@ -7,7 +7,7 @@ import {
   Label,
   Button,
 } from './LoginForm.styled';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { UserData } from 'utils/context';
 import { IoArrowBack } from 'react-icons/io5';
 
@@ -15,12 +15,12 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 
 let schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
+  otp: yup.string().length(6).required(),
 });
 
 export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
   const { setUser } = useContext(UserData);
+  const [OTP, setOTP] = useState('');
 
   const generateRecapcha = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -36,10 +36,11 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
     );
   };
 
-  const requestOTP = () => {
+  const requestOTP = values => {
     generateRecapcha();
+    console.log(values);
 
-    const phoneNumber = '+380006666666';
+    const phoneNumber = values.phone;
     const appVerifier = window.recaptchaVerifier;
 
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
@@ -47,61 +48,87 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
-        // ...
       })
       .catch(error => {
-        // Error; SMS not sent
+        console.log('SMS not sent', error.message);
+      });
+  };
+
+  const confirmOTP = values => {
+    setOTP(values.otp);
+    console.log('OTP', OTP);
+
+    const confirmationResult = window.confirmationResult;
+    confirmationResult
+      .confirm(OTP)
+      .then(result => {
+        // User signed in successfully.
+        const user = result.user;
+        // ...
+        setUser({
+          phone: user.phoneNumber,
+          token: user.refreshToken,
+          id: user.localId,
+          name: user.phoneNumber,
+        });
+      })
+      .catch(error => {
+        // User couldn't sign in (bad verification code?)
         // ...
       });
   };
 
-  // const handleLoginPhone = () => {
-  //   console.log('login Phone');
-  //   toggleSideBar();
-  // };
-
   return (
-    <Formik
-      onSubmit={handleLoginPhone}
-      initialValues={{
-        phone: '',
-        otp: '',
-      }}
-      validationSchema={schema}
-    >
-      <StyledForm>
-        <Button type="button" onClick={handleLoginPhone}>
-          <IoArrowBack size="20" />
-          Back
-        </Button>
+    <>
+      <Formik
+        onSubmit={requestOTP}
+        initialValues={{
+          phone: '',
+        }}
+      >
+        <StyledForm>
+          <Button type="button" onClick={handleLoginPhone}>
+            <IoArrowBack size="20" />
+            Back
+          </Button>
 
-        <Label htmlFor="email">
-          <StyledField
-            name="phone"
-            type="text"
-            placeholder="+380 XX XXX-XXXX"
-          ></StyledField>
-          <StyledErrorMsg component="div" name="phone" />
-        </Label>
+          <Label htmlFor="email">
+            <StyledField
+              name="phone"
+              type="text"
+              placeholder="+380 XX XXX-XXXX"
+              autoComplete="off"
+            ></StyledField>
+            <StyledErrorMsg component="div" name="phone" />
+          </Label>
 
-        <Button type="button" id="sign-in-button">
-          Send code
-        </Button>
+          <Button type="submit" id="sign-in-button">
+            Send code
+          </Button>
+        </StyledForm>
+      </Formik>
 
-        <Label htmlFor="otp">
-          <StyledField
-            name="otp"
-            type="text"
-            placeholder="XXXXXX"
-            autoComplete="off"
-          ></StyledField>
-          <StyledErrorMsg component="div" name="otp" />
-        </Label>
+      <Formik
+        onSubmit={confirmOTP}
+        initialValues={{
+          otp: '',
+        }}
+        validationSchema={schema}
+      >
+        <StyledForm>
+          <Label htmlFor="otp">
+            <StyledField
+              name="otp"
+              type="text"
+              placeholder="XXXXXX"
+              autoComplete="off"
+            ></StyledField>
+            <StyledErrorMsg component="div" name="otp" />
+          </Label>
 
-        <Button type="button" id="sign-in-button" onClick={handleLoginPhone}>
-          Login with phone number
-        </Button>
-      </StyledForm>
-    </Formik>
+          <Button type="submit">Login</Button>
+        </StyledForm>
+      </Formik>
+    </>
   );
 };

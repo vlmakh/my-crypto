@@ -38,7 +38,7 @@ export const SharedLayout = () => {
       <Header>
         <Nav>
           <Link to="/">Home</Link>
-          {user.email ? (
+          {user.token ? (
             <>
               <p>Hello, {user.email} </p>{' '}
               <button onClick={handleLogout}>Logout</button>
