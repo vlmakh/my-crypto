@@ -57,7 +57,7 @@ export const SharedLayout = () => {
         <MyLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyLink>
       </Footer>
       <SideBar show={showSideBar}>
-        <LoginForm setShowSideBar={setShowSideBar} />
+        <LoginForm toggleSideBar={toggleSideBar} />
       </SideBar>
     </Layout>
   );
