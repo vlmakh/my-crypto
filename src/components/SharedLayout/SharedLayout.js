@@ -17,11 +17,15 @@ import { logout } from 'utils/loginOperations';
 export const SharedLayout = () => {
   const { user, setUser } = useContext(UserData);
   const [showSideBar, setShowSideBar] = useState('110%');
+  const [sideBarBtn, setSideBarBtn] = useState('Login');
 
   const toggleSideBar = () => {
-    if (showSideBar === 0) setShowSideBar('110%');
-    else {
+    if (showSideBar === 0) {
+      setShowSideBar('110%');
+      setSideBarBtn('Login');
+    } else {
       setShowSideBar(0);
+      setSideBarBtn('Close');
     }
   };
 
@@ -40,7 +44,7 @@ export const SharedLayout = () => {
               <button onClick={handleLogout}>Logout</button>
             </>
           ) : (
-            <button onClick={toggleSideBar}>Login</button>
+            <button onClick={toggleSideBar}>{sideBarBtn}</button>
           )}
         </Nav>
       </Header>
