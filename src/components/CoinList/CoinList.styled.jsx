@@ -31,11 +31,12 @@ export const Symbol = styled.p`
 export const Price = styled.p`
   margin-left: auto;
   margin-right: 24px;
+  font-weight: 700;
 `;
 
 export const Percentage = styled.p`
-  /* margin-left: auto; */
   width: 60px;
   text-align: right;
+  font-weight: 700;
   color: ${p => (p.profit >= 0 ? "green" : "red")}
 `;

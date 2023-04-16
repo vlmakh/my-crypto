@@ -11,6 +11,7 @@ import { coinList } from 'utils/api';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { PaginationStyled } from 'components/Pagination/Pagination';
+import { priceFormat } from 'utils/priceFormat';
 
 export const HomePage = () => {
   const [list, setList] = useState([]);
@@ -53,7 +54,7 @@ export const HomePage = () => {
               <Name>{coin.name}</Name>
             </Box>
 
-            <Price>{coin.current_price}</Price>
+            <Price>{priceFormat(coin.current_price)}</Price>
             <Percentage profit={coin.price_change_percentage_24h}>
               {coin.price_change_percentage_24h.toFixed(2)}%
             </Percentage>
