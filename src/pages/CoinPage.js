@@ -2,6 +2,7 @@ import { Box } from 'components/Box/Box';
 import { useLocation, useParams, Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { singleCoin } from 'utils/api';
+import parse from 'html-react-parser';
 
 export const CoinPage = () => {
   const params = useParams();
@@ -25,14 +26,9 @@ export const CoinPage = () => {
       <Link to={backLink.current}>Back</Link>
       {coin && (
         <Box textAlign="center">
-          <img
-            src={coin?.image.large}
-            alt={coin?.name}
-            height="100"
-            style={{ marginBottom: 20 }}
-          />
+          <img src={coin?.image.large} alt={coin?.name} height="100" />
           <p>{coin.name}</p>
-          <p>{coin?.description.en.split('. ')[0]}</p>
+          <p>{parse(coin?.description.en)}</p>
         </Box>
       )}
     </Box>
