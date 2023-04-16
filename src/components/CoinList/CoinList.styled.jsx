@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
   display: flex;
@@ -9,6 +10,11 @@ export const List = styled.ul`
   margin: 0 auto;
   padding: 16px 0;
 `;
+
+export const CoinLink = styled(NavLink)`
+  text-decoration: none;
+  color: #212121;
+`
 
 export const Item = styled.li`
   display: flex;

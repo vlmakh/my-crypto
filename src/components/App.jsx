@@ -2,7 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { theme } from 'utils/theme';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { HomePage } from 'pages/HomePage';
-import { ProductsPage } from 'pages/Products';
+import { CoinPage } from 'pages/CoinPage';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { UserData } from 'utils/context';
@@ -22,7 +22,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="products" element={<ProductsPage />} />
+            <Route path="/:coinId" element={<CoinPage />} />
           </Route>
         </Routes>
       </UserData.Provider>

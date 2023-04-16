@@ -1,6 +1,7 @@
 import { Box } from 'components/Box/Box';
 import {
   List,
+  CoinLink,
   Item,
   Name,
   Symbol,
@@ -9,7 +10,7 @@ import {
 } from 'components/CoinList/CoinList.styled';
 import { coinList } from 'utils/api';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { priceFormat } from 'utils/priceFormat';
 
@@ -20,6 +21,7 @@ export const HomePage = () => {
   const currentPage = Number(searchQuery.get('page'))
     ? Number(searchQuery.get('page'))
     : 1;
+  const location = useLocation();
 
   useEffect(() => {
     coinList(currentPage)
@@ -46,19 +48,21 @@ export const HomePage = () => {
     <Box mt={5} textAlign="center">
       <List>
         {list.map(coin => (
-          <Item key={coin.id}>
-            <img src={coin.image} alt={coin.name} width="60" height="60" />
+          <CoinLink to={`/${coin.id}`} state={{ from: location }}>
+            <Item key={coin.id}>
+              <img src={coin.image} alt={coin.name} width="60" height="60" />
 
-            <Box ml={5} textAlign="left">
-              <Symbol>{coin.symbol}</Symbol>
-              <Name>{coin.name}</Name>
-            </Box>
+              <Box ml={5} textAlign="left">
+                <Symbol>{coin.symbol}</Symbol>
+                <Name>{coin.name}</Name>
+              </Box>
 
-            <Price>{priceFormat(coin.current_price)}</Price>
-            <Percentage profit={coin.price_change_percentage_24h}>
-              {coin.price_change_percentage_24h.toFixed(2)}%
-            </Percentage>
-          </Item>
+              <Price>{priceFormat(coin.current_price)}</Price>
+              <Percentage profit={coin.price_change_percentage_24h}>
+                {coin.price_change_percentage_24h.toFixed(2)}%
+              </Percentage>
+            </Item>
+          </CoinLink>
         ))}
       </List>
 
