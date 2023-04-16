@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Form, Field, ErrorMessage } from 'formik';
 
-
 export const StyledForm = styled(Form)`
   padding: 16px 24px;
   display: flex;
@@ -9,11 +8,11 @@ export const StyledForm = styled(Form)`
   gap: 16px;
   justify-content: space-around;
 
-  width: 400px;
+  width: 360px;
 `;
 
 export const StyledField = styled(Field)`
-  padding: 4px 8px;  
+  padding: 4px 8px;
 `;
 
 export const Label = styled.label`
@@ -34,21 +33,45 @@ export const StyledErrorMsg = styled(ErrorMessage)`
 `;
 
 export const Button = styled.button`
+  display: flex;
+  gap: 24px;
   cursor: pointer;
   width: 100%;
-  padding: 8px;
+  padding: 8px 16px;
   font-size: 16px;
   font-weight: 600;
   border-radius: 4px;
   border: none;
   margin: 0 auto;
-  transition: background-color 250ms linear;
+  transition: background-color 250ms ease-in;
+  box-shadow: 0 2px 2px grey;
 
   :hover {
-    background-color: ${(p) => p.theme.colors.accent};
+    background-color: ${p => p.theme.colors.accent};
+  }
+
+  :active {
+    box-shadow: inset 0 2px 2px grey;
   }
 
   :focus-visible {
     outline: none;
+  }
+`;
+
+export const ButtonLogin = styled(Button)`
+  padding-left: 60px;
+`;
+
+export const ButtonGoogle = styled(Button)`
+  background-color: white;
+`;
+
+export const ButtonFB = styled(Button)`
+  background-color: #4267B2;
+  color: white;
+
+  :hover {
+    background-color: ${p => p.theme.colors.accent};
   }
 `;

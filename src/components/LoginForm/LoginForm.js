@@ -7,10 +7,15 @@ import {
   StyledErrorMsg,
   Label,
   Button,
+  ButtonGoogle,
+  ButtonFB,
+  ButtonLogin,
 } from './LoginForm.styled';
 import { login, loginGoogle, loginFacebook } from 'utils/loginOperations';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
+import { BsFacebook, BsFillTelephoneFill } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -96,16 +101,20 @@ export const LoginForm = ({ setShowSideBar }) => {
           <StyledErrorMsg component="div" name="password" />
         </Label>
 
-        <Button type="submit">Login</Button>
-        <Button type="button" onClick={handleLoginGoogle}>
-          Login with Google
-        </Button>
+        <ButtonLogin type="submit">Login</ButtonLogin>
 
-        <Button type="button" onClick={handleLoginFacebook}>
+        <ButtonGoogle type="button" onClick={handleLoginGoogle}>
+          <FcGoogle size="20" />
+          Login with Google
+        </ButtonGoogle>
+
+        <ButtonFB type="button" onClick={handleLoginFacebook}>
+          <BsFacebook size="20" />
           Login with Facebook
-        </Button>
+        </ButtonFB>
 
         <Button type="button" onClick={handleLoginPhone}>
+          <BsFillTelephoneFill size="20" />
           Login with phone number
         </Button>
       </StyledForm>

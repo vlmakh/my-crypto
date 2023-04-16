@@ -67,6 +67,14 @@ export const loginFacebook = async () => {
   }
 };
 
+export const loginPhone = async () => {
+  try {
+    console.log('Login phone');
+  } catch (error) {
+    console.log(error.code, error.message);
+  }
+};
+
 export const logout = async () => {
   try {
     await auth.signOut();
