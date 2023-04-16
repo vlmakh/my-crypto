@@ -16,8 +16,6 @@ export const App = () => {
     localStorage.setItem('mycrypto', JSON.stringify(user));
   }, [user]);
   
-  console.log(user.email)
-
   return (
     <ThemeProvider theme={theme}>
       <UserData.Provider value={{ user, setUser }}>
