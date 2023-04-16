@@ -59,10 +59,6 @@ export const Button = styled.button`
   }
 `;
 
-export const ButtonLogin = styled(Button)`
-  padding-left: 60px;
-`;
-
 export const ButtonGoogle = styled(Button)`
   background-color: white;
 `;
@@ -70,8 +66,4 @@ export const ButtonGoogle = styled(Button)`
 export const ButtonFB = styled(Button)`
   background-color: #4267B2;
   color: white;
-
-  :hover {
-    background-color: ${p => p.theme.colors.accent};
-  }
 `;
