@@ -45,7 +45,7 @@ export const HomePage = () => {
       <List>
         {list.map(coin => (
           <Item key={coin.id}>
-            <img src={coin.image} alt={coin.name} width="60" />
+            <img src={coin.image} alt={coin.name} width="60" height="60" />
 
             <Box ml={5} textAlign="left">
               <Symbol>{coin.symbol}</Symbol>
