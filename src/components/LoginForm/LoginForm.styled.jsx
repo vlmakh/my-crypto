@@ -22,6 +22,7 @@ export const BtnsBox = styled.div`
 `;
 
 export const StyledField = styled(Field)`
+  width: 100%;
   padding: 4px 8px;
 `;
 
