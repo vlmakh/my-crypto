@@ -53,34 +53,34 @@ export const RegisterForm = ({ handleRegisterForm, toggleSideBar }) => {
         </Button>
 
         <Label htmlFor="email">
-          <span>email</span>
-          <StyledField name="email" type="email" placeholder=" "></StyledField>
+          <StyledField
+            name="email"
+            type="email"
+            placeholder="email"
+          ></StyledField>
           <StyledErrorMsg component="div" name="email" />
         </Label>
 
         <Label htmlFor="name">
-          <span>name</span>
-          <StyledField name="name" type="text" placeholder=" "></StyledField>
+          <StyledField name="name" type="text" placeholder="Name"></StyledField>
           <StyledErrorMsg component="div" name="name" />
         </Label>
 
         <Label htmlFor="password">
-          <span>password </span>
           <StyledField
             name="password"
             type="password"
-            placeholder=" "
+            placeholder="password"
             autoComplete="off"
           ></StyledField>
           <StyledErrorMsg component="div" name="password" />
         </Label>
 
         <Label htmlFor="passwordConfirm">
-          <span>re-password </span>
           <StyledField
             name="passwordConfirm"
             type="password"
-            placeholder=" "
+            placeholder="password repeat"
             autoComplete="off"
           ></StyledField>
           <StyledErrorMsg component="div" name="passwordConfirm" />
