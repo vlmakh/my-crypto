@@ -11,6 +11,16 @@ export const StyledForm = styled(Form)`
   width: 360px;
 `;
 
+export const BtnsBox = styled.div`
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-around;
+
+  width: 360px;
+`;
+
 export const StyledField = styled(Field)`
   padding: 4px 8px;
 `;

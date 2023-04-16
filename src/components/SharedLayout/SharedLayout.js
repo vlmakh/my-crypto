@@ -9,7 +9,7 @@ import {
 } from './SharedLayout.styled';
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { useState } from 'react';
-import { LoginForm } from 'components/LoginForm/LoginForm';
+import { LoginBtnsBox } from 'components/LoginForm/LoginBtnsBox';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
 import { logout } from 'utils/loginOperations';
@@ -57,7 +57,7 @@ export const SharedLayout = () => {
         <MyLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyLink>
       </Footer>
       <SideBar show={showSideBar}>
-        <LoginForm toggleSideBar={toggleSideBar} />
+        <LoginBtnsBox toggleSideBar={toggleSideBar} />
       </SideBar>
     </Layout>
   );
