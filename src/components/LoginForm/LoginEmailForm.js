@@ -51,17 +51,19 @@ export const LoginEmailForm = ({ handleLogin, toggleSideBar }) => {
         </Button>
 
         <Label htmlFor="email">
-          <span>email</span>
-          <StyledField name="email" type="text" placeholder=" "></StyledField>
+          <StyledField
+            name="email"
+            type="text"
+            placeholder="email"
+          ></StyledField>
           <StyledErrorMsg component="div" name="email" />
         </Label>
 
         <Label htmlFor="password">
-          <span>password </span>
           <StyledField
             name="password"
             type="password"
-            placeholder=" "
+            placeholder="password"
             autoComplete="off"
           ></StyledField>
           <StyledErrorMsg component="div" name="password" />
