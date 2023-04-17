@@ -5,7 +5,7 @@ export const Layout = styled.div`
   overflow: hidden;
 
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr auto auto;
   min-height: 100vh;
   padding-top: ${p => p.theme.space[1]}px;
   background-color: ${p => p.theme.colors.bcgMain};

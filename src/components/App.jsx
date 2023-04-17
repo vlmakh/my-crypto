@@ -12,6 +12,8 @@ const savedUser = JSON.parse(localStorage.getItem('mycrypto'));
 export const App = () => {
   const [user, setUser] = useState(savedUser ?? {});
 
+  // console.log(user)
+
   useEffect(() => {
     localStorage.setItem('mycrypto', JSON.stringify(user));
   }, [user]);
