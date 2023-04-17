@@ -26,7 +26,7 @@ export const RegisterForm = ({ handleRegisterForm, toggleSideBar }) => {
         setUser({
           email: data.email,
           token: data.accessToken,
-          id: data.uid,
+          uid: data.uid,
         })
       )
       .finally(() => {

@@ -72,3 +72,8 @@ export const SideBar = styled.div`
 
     transition: transform 300ms ease-in;
 `;
+
+export const UserMenu = styled.div`
+  display: flex;
+  gap: 16px;
+`;

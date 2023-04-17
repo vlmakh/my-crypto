@@ -32,7 +32,7 @@ export const LoginBtnsBox = ({ toggleSideBar }) => {
           email: user.email,
           token,
           name: user.displayName,
-          id: user.uid,
+          uid: user.uid,
         })
       )
       .finally(() => {
@@ -47,7 +47,7 @@ export const LoginBtnsBox = ({ toggleSideBar }) => {
           email: user.email,
           token,
           name: user.displayName,
-          id: user.uid,
+          uid: user.uid,
         })
       )
       .finally(() => {

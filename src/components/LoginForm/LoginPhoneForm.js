@@ -61,7 +61,7 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
         setUser({
           phone: user.phoneNumber,
           token: user.refreshToken,
-          id: user.uid,
+          uid: user.uid,
           name: user.phoneNumber,
         });
       })

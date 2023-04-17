@@ -6,6 +6,7 @@ import {
   Footer,
   MyLink,
   SideBar,
+  UserMenu,
 } from './SharedLayout.styled';
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { useState } from 'react';
@@ -38,13 +39,16 @@ export const SharedLayout = () => {
       <Header>
         <Nav>
           <Link to="/">Home</Link>
-          {user.token ? (
-            <>
+          {user.uid ? (
+            <UserMenu>
               <p>{user.name} </p>
+              <Link to="/">My coins</Link>
               <button onClick={handleLogout}>Logout</button>
-            </>
+            </UserMenu>
           ) : (
-            <button onClick={toggleSideBar}>{sideBarBtn}</button>
+            <>
+              <button onClick={toggleSideBar}>{sideBarBtn}</button>
+            </>
           )}
         </Nav>
       </Header>
