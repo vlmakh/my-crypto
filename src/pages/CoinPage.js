@@ -11,7 +11,7 @@ import { UserData } from 'utils/context';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from 'utils/firebase';
 
-export const CoinPage = () => {
+export default function CoinPage() {
   const { user, watchlist } = useContext(UserData);
   const params = useParams();
   const [coin, setCoin] = useState(null);
@@ -81,4 +81,4 @@ export const CoinPage = () => {
       )}
     </Box>
   );
-};
+}
