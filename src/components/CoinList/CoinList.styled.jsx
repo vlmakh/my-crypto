@@ -6,7 +6,7 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 8px;
   list-style: none;
-  width: 480px;
+  width: 540px;
   margin: 0 auto;
   padding: 16px 0;
 `;
@@ -34,10 +34,8 @@ export const Symbol = styled.p`
   font-weight: 700;
 `;
 
-
-
 export const Price = styled.p`
-  width: 60px;
+  width: 100px;
   margin-left: auto;
   text-align: right;
   font-weight: 700;

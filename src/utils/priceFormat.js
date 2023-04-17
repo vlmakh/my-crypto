@@ -8,9 +8,12 @@ export const priceFormat = price => {
   if (price < 0.0001) {
     return price.toFixed(8);
   }
-  if (price < 0.01) {
+  if (+price < 0.01) {
     return price.toFixed(4);
+  }
+  if (+price < 0.1) {
+    return price.toFixed(3);
   } else {
-    return price.toFixed(2);
+    return price;
   }
 };

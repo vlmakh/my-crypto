@@ -61,7 +61,7 @@ export const HomePage = () => {
 
               <Price>{priceFormat(coin.current_price)}</Price>
               <Percentage profit={coin.price_change_percentage_24h}>
-                {coin.price_change_percentage_24h.toFixed(2)}%
+                {(+coin.price_change_percentage_24h).toFixed(2)}%
               </Percentage>
               <Rank>{coin.market_cap_rank}</Rank>
             </Item>

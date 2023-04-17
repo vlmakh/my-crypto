@@ -13,10 +13,12 @@ import { useEffect, useState } from 'react';
 import { priceFormat } from 'utils/priceFormat';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
+import { useLocation } from 'react-router-dom';
 
 export default function UserCoinsPage() {
   const { watchlist } = useContext(UserData);
   const [list, setList] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     userWatchList(watchlist)
@@ -33,7 +35,11 @@ export default function UserCoinsPage() {
       <List>
         {list &&
           list.map(coin => (
-            <CoinLink to={`/${coin.id}`} key={coin.id}>
+            <CoinLink
+              to={`/${coin.id}`}
+              state={{ from: location }}
+              key={coin.id}
+            >
               <Item>
                 <img
                   src={coin.image?.small}

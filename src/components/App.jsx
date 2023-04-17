@@ -26,7 +26,7 @@ export const App = () => {
       const coinRef = doc(db, "watchlist", user?.uid);
       const unsubscribe = onSnapshot(coinRef, (coin) => {
         if (coin.exists()) {
-          console.log(coin.data().coins);
+          // console.log(coin.data().coins);
           setWatchlist(coin.data().coins);
         } else {
           console.log("No Items in Watchlist");

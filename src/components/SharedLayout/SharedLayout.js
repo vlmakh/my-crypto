@@ -9,7 +9,7 @@ import {
   UserMenu,
 } from './SharedLayout.styled';
 import { LogoVM } from 'components/LogoVM/LogoVM';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { LoginBtnsBox } from 'components/LoginForm/LoginBtnsBox';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
@@ -52,7 +52,11 @@ export const SharedLayout = () => {
           )}
         </Nav>
       </Header>
-      <Outlet />
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+
       <Footer>
         <MyLink href="https://vlmakh.github.io/my-portfolio/" target="blank">
           <LogoVM />
