@@ -8,18 +8,16 @@ import { HiStar, HiOutlineStar } from 'react-icons/hi';
 import { BtnAdd, BackLinkBtn } from 'components/Buttons/Buttons.styled';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from 'utils/firebase';
 
 export const CoinPage = () => {
-  const { user } = useContext(UserData);
+  const { user, watchlist } = useContext(UserData);
   const params = useParams();
   const [coin, setCoin] = useState(null);
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
-  const [saved, setSaved] = useState(false);
-
-  const handleSaveToLib = () => {
-    setSaved(!saved);
-  };
+  // const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     singleCoin(params.coinId)
@@ -32,13 +30,52 @@ export const CoinPage = () => {
       });
   }, [params.coinId]);
 
+  const inWatchlist = watchlist.includes(coin?.id);
+
+  const addToWatchlist = async () => {
+    const coinRef = doc(db, 'watchlist', user.uid);
+    try {
+      await setDoc(
+        coinRef,
+        { coins: watchlist ? [...watchlist, coin?.id] : [coin?.id] },
+        { merge: true }
+      );
+
+      console.log('Добавлено в отслеживаемые !');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const removeFromWatchlist = async () => {
+    const coinRef = doc(db, 'watchlist', user.uid);
+    try {
+      await setDoc(
+        coinRef,
+        { coins: watchlist.filter(wish => wish !== coin?.id) },
+        { merge: true }
+      );
+
+      console.log('Удалено из отслеживаемого !');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // const handleSaveToLib = () => {
+  //   setSaved(!saved);
+  // };
+
   return (
     <Box>
       <TopBar>
         <BackLinkBtn to={backLink.current}>Back</BackLinkBtn>
-        {user.id && (
-          <BtnAdd onClick={handleSaveToLib} saved={saved}>
-            {saved ? <HiStar size="24" /> : <HiOutlineStar size="24" />}
+        {user.uid && (
+          <BtnAdd
+            onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
+            saved={inWatchlist}
+          >
+            {inWatchlist ? <HiStar size="24" /> : <HiOutlineStar size="24" />}
           </BtnAdd>
         )}
       </TopBar>
