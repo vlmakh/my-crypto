@@ -28,6 +28,7 @@ export const HomePage = () => {
       .then(data => {
         setList(data);
         setTotalPages(100);
+        document.title = `My Crypto`;
       })
       .catch(error => {});
   }, [currentPage]);
