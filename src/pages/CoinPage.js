@@ -17,7 +17,6 @@ export const CoinPage = () => {
   const [coin, setCoin] = useState(null);
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
-  // const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     singleCoin(params.coinId)
@@ -40,8 +39,6 @@ export const CoinPage = () => {
         { coins: watchlist ? [...watchlist, coin?.id] : [coin?.id] },
         { merge: true }
       );
-
-      console.log('Добавлено в отслеживаемые !');
     } catch (error) {
       console.log(error.message);
     }
@@ -52,19 +49,13 @@ export const CoinPage = () => {
     try {
       await setDoc(
         coinRef,
-        { coins: watchlist.filter(wish => wish !== coin?.id) },
+        { coins: watchlist.filter(coinId => coinId !== coin?.id) },
         { merge: true }
       );
-
-      console.log('Удалено из отслеживаемого !');
     } catch (error) {
       console.log(error.message);
     }
   };
-
-  // const handleSaveToLib = () => {
-  //   setSaved(!saved);
-  // };
 
   return (
     <Box>

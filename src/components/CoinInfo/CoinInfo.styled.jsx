@@ -5,8 +5,8 @@ export const TopBar = styled.div`
   justify-content: space-between;
   margin-top: 32px;
   height: 60px;
-`
+`;
 
 export const Image = styled.img`
-    margin: 0 auto;
-`
+  margin: 0 auto;
+`;
