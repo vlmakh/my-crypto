@@ -74,8 +74,10 @@ export default function CoinPage() {
       {coin && (
         <Box textAlign="center" mt={5}>
           <Image src={coin?.image.large} alt={coin?.name} width="100" />
-
           <p>{coin.name}</p>
+          <p>rank: {coin.market_cap_rank}</p>
+          <p>{coin.market_data.current_price.usd} USD</p>
+
           <p>{parse(coin?.description.en)}</p>
         </Box>
       )}

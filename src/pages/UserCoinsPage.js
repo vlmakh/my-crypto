@@ -42,7 +42,7 @@ export default function UserCoinsPage() {
             >
               <Item>
                 <img
-                  src={coin.image?.small}
+                  src={coin.image.small}
                   alt={coin.name}
                   width="50"
                   height="50"
@@ -53,7 +53,7 @@ export default function UserCoinsPage() {
                   <Name>{coin.name}</Name>
                 </Box>
 
-                <Price>{priceFormat(coin.tickers[0].last)}</Price>
+                <Price>{priceFormat(coin.market_data.current_price.usd)}</Price>
 
                 <Rank>{coin.market_cap_rank}</Rank>
               </Item>
