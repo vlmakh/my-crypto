@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const BtnAdd = styled.button`
-  color: ${p => (p.saved ? "yellow" : "#212121")};
+  color: ${p => (p.saved ? "#0000FF" : "#212121")};
   width: 60px;
   height: 60px;
   border: none;

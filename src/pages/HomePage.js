@@ -5,6 +5,7 @@ import {
   Item,
   Name,
   Symbol,
+  Rank,
   Price,
   Percentage,
 } from 'components/CoinList/CoinList.styled';
@@ -53,7 +54,7 @@ export const HomePage = () => {
             <Item>
               <img src={coin.image} alt={coin.name} width="60" height="60" />
 
-              <Box ml={5} textAlign="left">
+              <Box ml={5} textAlign="left" width="160px">
                 <Symbol>{coin.symbol}</Symbol>
                 <Name>{coin.name}</Name>
               </Box>
@@ -62,6 +63,7 @@ export const HomePage = () => {
               <Percentage profit={coin.price_change_percentage_24h}>
                 {coin.price_change_percentage_24h.toFixed(2)}%
               </Percentage>
+              <Rank>{coin.market_cap_rank}</Rank>
             </Item>
           </CoinLink>
         ))}

@@ -14,7 +14,7 @@ export const List = styled.ul`
 export const CoinLink = styled(NavLink)`
   text-decoration: none;
   color: #212121;
-`
+`;
 
 export const Item = styled.li`
   display: flex;
@@ -34,15 +34,26 @@ export const Symbol = styled.p`
   font-weight: 700;
 `;
 
+
+
 export const Price = styled.p`
+  width: 60px;
   margin-left: auto;
-  margin-right: 24px;
+  text-align: right;
   font-weight: 700;
 `;
 
 export const Percentage = styled.p`
   width: 60px;
+  margin-left: 16px;
   text-align: right;
   font-weight: 700;
-  color: ${p => (p.profit >= 0 ? "green" : "red")}
+  color: ${p => (p.profit >= 0 ? 'green' : 'red')};
+`;
+
+export const Rank = styled.p`
+  width: 32px;
+  margin-left: 16px;
+  text-align: right;
+  font-size: 12px;
 `;
