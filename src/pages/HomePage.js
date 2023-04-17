@@ -48,8 +48,8 @@ export const HomePage = () => {
     <Box mt={5} textAlign="center">
       <List>
         {list.map(coin => (
-          <CoinLink to={`/${coin.id}`} state={{ from: location }}>
-            <Item key={coin.id}>
+          <CoinLink to={`/${coin.id}`} state={{ from: location }} key={coin.id}>
+            <Item>
               <img src={coin.image} alt={coin.name} width="60" height="60" />
 
               <Box ml={5} textAlign="left">
