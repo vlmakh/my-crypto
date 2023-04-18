@@ -62,7 +62,6 @@ export const LoginPhoneForm = ({ handleLoginPhone, toggleSideBar }) => {
           phone: user.phoneNumber,
           token: user.refreshToken,
           uid: user.uid,
-          name: user.phoneNumber,
         });
       })
       .catch(error => {

@@ -22,8 +22,8 @@ export const App = () => {
   useEffect(() => {
     localStorage.setItem('mycrypto', JSON.stringify(user));
 
-    if (user) {
-      const coinRef = doc(db, "watchlist", user?.uid);
+    if (user.uid) {
+      const coinRef = doc(db, "watchlist", user.uid);
       const unsubscribe = onSnapshot(coinRef, (coin) => {
         if (coin.exists()) {
           // console.log(coin.data().coins);

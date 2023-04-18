@@ -41,7 +41,7 @@ export const SharedLayout = () => {
           <Link to="/">Home</Link>
           {user.uid ? (
             <UserMenu>
-              <p>{user.name} </p>
+              <p>{user.name || user.email || user.phone} </p>
               <Link to="/user">Watchlist</Link>
               <button onClick={handleLogout}>Logout</button>
             </UserMenu>
