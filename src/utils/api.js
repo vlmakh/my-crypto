@@ -12,7 +12,7 @@ const coinList = async page => {
 };
 
 const singleCoin = async id => {
-  const response = await axios.get(`${MAIN_URL}/${id}`);
+  const response = await axios.get(`${MAIN_URL}/coins/${id}`);
   return response.data;
 };
 
