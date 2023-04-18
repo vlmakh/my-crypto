@@ -60,6 +60,8 @@ export default function UserCoinsPage() {
     setSearchList([]);
   };
 
+  // const chooseRank = () => {}
+
   return (
     <Box>
       {!user.uid && <Navigate to="/" />}
@@ -67,33 +69,40 @@ export default function UserCoinsPage() {
       <Box mt={5} textAlign="center">
         <List>
           {list &&
-            list.map(coin => (
-              <CoinLink
-                to={`/${coin.id}`}
-                state={{ from: location }}
-                key={coin.id}
-              >
-                <Item>
-                  <img
-                    src={coin.image.small}
-                    alt={coin.name}
-                    width="50"
-                    height="50"
-                  />
+            list
+              .sort(
+                (a, b) =>
+                  a.market_cap_rank ??
+                  a.coingecko_rank - b.market_cap_rank ??
+                  b.coingecko_rank
+              )
+              .map(coin => (
+                <CoinLink
+                  to={`/${coin.id}`}
+                  state={{ from: location }}
+                  key={coin.id}
+                >
+                  <Item>
+                    <img
+                      src={coin.image.small}
+                      alt={coin.name}
+                      width="50"
+                      height="50"
+                    />
 
-                  <Box ml={5} textAlign="left" width="160px">
-                    <Symbol>{coin.symbol}</Symbol>
-                    <Name>{coin.name}</Name>
-                  </Box>
+                    <Box ml={5} textAlign="left" width="160px">
+                      <Symbol>{coin.symbol}</Symbol>
+                      <Name>{coin.name}</Name>
+                    </Box>
 
-                  <Price>
-                    {priceFormat(coin.market_data.current_price.usd)}
-                  </Price>
+                    <Price>
+                      {priceFormat(coin.market_data.current_price.usd)}
+                    </Price>
 
-                  <Rank>{coin.market_cap_rank}</Rank>
-                </Item>
-              </CoinLink>
-            ))}
+                    <Rank>{coin.market_cap_rank ?? coin.coingecko_rank}</Rank>
+                  </Item>
+                </CoinLink>
+              ))}
         </List>
       </Box>
 
