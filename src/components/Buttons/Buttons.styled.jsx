@@ -10,7 +10,8 @@ export const BtnAdd = styled.button`
   cursor: pointer;
 `;
 export const BackLinkBtn = styled(NavLink)`
-  display: inline-block;
+  display: inline-grid;
+  place-items: center;
   padding: 4px 8px;
   color: ${p => p.theme.colors.text};
   text-decoration: none;

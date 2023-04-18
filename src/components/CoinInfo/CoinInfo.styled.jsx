@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
 
+export const CoinPageWrap = styled.div`
+  margin: 0 auto;  
+  max-width: 784px;
+`
+
 export const TopBar = styled.div`
   display: flex;
   justify-content: space-between;

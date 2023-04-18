@@ -1,5 +1,6 @@
 import { Box } from 'components/Box/Box';
 import {
+  CoinPageWrap,
   TopBar,
   Image,
   Symbol,
@@ -12,7 +13,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { singleCoin } from 'utils/api';
 import parse from 'html-react-parser';
-import { HiStar, HiOutlineStar } from 'react-icons/hi';
+import { HiStar, HiOutlineStar, HiArrowLeft } from 'react-icons/hi';
 import { BtnAdd, BackLinkBtn } from 'components/Buttons/Buttons.styled';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
@@ -66,9 +67,11 @@ export default function CoinPage() {
   };
 
   return (
-    <Box>
+    <CoinPageWrap>
       <TopBar>
-        <BackLinkBtn to={backLink.current}>Back</BackLinkBtn>
+        <BackLinkBtn to={backLink.current}>
+          <HiArrowLeft size="24" />
+        </BackLinkBtn>
         {user.uid && (
           <BtnAdd
             onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
@@ -90,6 +93,6 @@ export default function CoinPage() {
           <Descr>{parse(coin?.description.en)}</Descr>
         </Box>
       )}
-    </Box>
+    </CoinPageWrap>
   );
 }
