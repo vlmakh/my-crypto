@@ -60,8 +60,6 @@ export default function UserCoinsPage() {
     setSearchList([]);
   };
 
-  // const chooseRank = () => {}
-
   return (
     <Box>
       {!user.uid && <Navigate to="/" />}

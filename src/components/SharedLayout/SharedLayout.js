@@ -1,4 +1,4 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
   Layout,
   Header,
@@ -14,6 +14,7 @@ import { LoginBtnsBox } from 'components/LoginForm/LoginBtnsBox';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
 import { logout } from 'utils/loginOperations';
+import { Button, ButtonLink } from 'components/Buttons/Buttons.styled';
 
 export const SharedLayout = () => {
   const { user, setUser } = useContext(UserData);
@@ -38,16 +39,16 @@ export const SharedLayout = () => {
     <Layout>
       <Header>
         <Nav>
-          <Link to="/">Home</Link>
+          <ButtonLink to="/">Home</ButtonLink>
           {user.uid ? (
             <UserMenu>
               <p>{user.name || user.email || user.phone} </p>
-              <Link to="/user">Watchlist</Link>
-              <button onClick={handleLogout}>Logout</button>
+              <ButtonLink to="/user">Watchlist</ButtonLink>
+              <Button onClick={handleLogout}>Logout</Button>
             </UserMenu>
           ) : (
             <>
-              <button onClick={toggleSideBar}>{sideBarBtn}</button>
+              <Button onClick={toggleSideBar}>{sideBarBtn}</Button>
             </>
           )}
         </Nav>
