@@ -1,5 +1,13 @@
 import { Box } from 'components/Box/Box';
-import { TopBar, Image } from 'components/CoinInfo/CoinInfo.styled';
+import {
+  TopBar,
+  Image,
+  Symbol,
+  Name,
+  Rank,
+  Price,
+  Descr,
+} from 'components/CoinInfo/CoinInfo.styled';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { singleCoin } from 'utils/api';
@@ -72,13 +80,14 @@ export default function CoinPage() {
       </TopBar>
 
       {coin && (
-        <Box textAlign="center" mt={5}>
+        <Box textAlign="center" mt={4}>
           <Image src={coin?.image.large} alt={coin?.name} width="100" />
-          <p>{coin.name}</p>
-          <p>rank: {coin.market_cap_rank}</p>
-          <p>{coin.market_data.current_price.usd} USD</p>
+          <Symbol>{coin.symbol}</Symbol>
+          <Name>{coin.name}</Name>
+          <Rank>rank: {coin.market_cap_rank}</Rank>
+          <Price>{coin.market_data.current_price.usd} USD</Price>
 
-          <p>{parse(coin?.description.en)}</p>
+          <Descr>{parse(coin?.description.en)}</Descr>
         </Box>
       )}
     </Box>

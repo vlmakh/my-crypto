@@ -43,8 +43,8 @@ export const Footer = styled.div`
 `;
 
 export const MyLink = styled.a`
-  color: ${p => p.theme.colors.main};
-  font-size: ${p => p.theme.fontSizes.xs};
+  color: ${p => p.theme.colors.text};
+  font-size: ${p => p.theme.fontSizes.s};
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;

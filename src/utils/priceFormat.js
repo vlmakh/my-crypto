@@ -14,6 +14,6 @@ export const priceFormat = price => {
   if (+price < 0.1) {
     return price.toFixed(3);
   } else {
-    return price;
+    return price.toFixed(2);
   }
 };

@@ -2,16 +2,16 @@ export const theme = {
   colors: {
     main: '#112734', // dark blue
     secondary: '#ffffff7f',
-    accent: '#4b99bc', // light blue
+    accent: '#0000FF', // blue
     text: '#212121',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {
-    xs: '16px',
-    s: '20px',
-    m: '24px',
-    l: '32px',
-    xl: '64px',
+    xs: '12px',
+    s: '14px',
+    m: '16px',
+    l: '24px',
+    xl: '32px',
   },
   borders: {
     none: 'none',

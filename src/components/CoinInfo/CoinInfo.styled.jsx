@@ -10,3 +10,29 @@ export const TopBar = styled.div`
 export const Image = styled.img`
   margin: 0 auto;
 `;
+
+export const Symbol = styled.p`
+  margin-top: 16px;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+export const Name = styled.p`
+  margin-top: 16px;`;
+
+export const Rank = styled.p`
+  margin-top: 16px;
+  
+`;
+
+export const Price = styled.p`
+  margin-top: 16px;
+  font-weight: 700;
+`;
+
+export const Descr = styled.p`
+  margin-top: 16px;
+  padding: 0 16px;
+  text-align: justify;
+`;
