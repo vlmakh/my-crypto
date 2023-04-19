@@ -19,15 +19,22 @@ import {
   SearchInput,
   SearchBtn,
   ClearBtn,
+  Label,
+  StyledErrorMsg,
 } from 'components/Search/Search.styled';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+
+let schema = yup.object().shape({
+  coin: yup.string().min(3).required(),
+});
 
 export default function UserCoinsPage() {
   const { user, watchlist } = useContext(UserData);
   const [list, setList] = useState([]);
   const location = useLocation();
   const [searchList, setSearchList] = useState([]);
-  const [input, setInput] = useState('');
 
   useEffect(() => {
     userWatchList(watchlist)
@@ -39,24 +46,13 @@ export default function UserCoinsPage() {
       .catch(error => {});
   }, [watchlist]);
 
-  const onSearchInput = event => {
-    setInput(event.target.value);
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    if (!input || input.trim().length <= 2) {
-      return;
-    }
-
-    searchCoin(input)
+  const handleSubmit = values => {
+    searchCoin(values.coin)
       .then(data => setSearchList(data.coins))
       .catch(error => console.log(error.message));
   };
 
-  const clearAll = () => {
-    setInput('');
+  const handleReset = () => {
     setSearchList([]);
   };
 
@@ -103,23 +99,34 @@ export default function UserCoinsPage() {
         </List>
       </Box>
 
-      <SearchForm onSubmit={handleSubmit}>
-        <Box position="relative" flexGrow="1">
-          <SearchInput
-            type="text"
-            value={input}
-            onChange={onSearchInput}
-            placeholder="coin name or symbol"
-          />
-          <ClearBtn type="button" onClick={clearAll}>
-            <IoIosCloseCircle size="20" />
-          </ClearBtn>
-        </Box>
-        <SearchBtn type="submit">Search</SearchBtn>
-      </SearchForm>
+      <Formik
+        onSubmit={handleSubmit}
+        initialValues={{
+          coin: '',
+        }}
+        validationSchema={schema}
+      >
+        <SearchForm>
+          <Box flexGrow="1">
+            <Label htmlFor="coin">
+              <SearchInput
+                name="coin"
+                type="text"
+                placeholder="coin name or symbol"
+                autoComplete="off"
+              />
+              <ClearBtn type="reset" onClick={handleReset}>
+                <IoIosCloseCircle size="20" />
+              </ClearBtn>
+              <StyledErrorMsg component="div" name="coin" />
+            </Label>
+          </Box>
+          <SearchBtn type="submit">Search</SearchBtn>
+        </SearchForm>
+      </Formik>
 
       <List>
-        {searchList &&
+        {searchList.length > 0 &&
           searchList.map(coin => (
             <CoinLink
               to={`/${coin.id}`}

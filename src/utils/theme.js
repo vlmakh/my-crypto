@@ -1,7 +1,6 @@
 export const theme = {
   colors: {
-    main: '#112734', // dark blue
-    secondary: '#ffffff7f',
+    bcgMain: '#FFFFFF',
     accent: '#0000FF', // blue
     text: '#212121',
   },
