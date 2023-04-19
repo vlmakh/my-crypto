@@ -54,11 +54,14 @@ export const Button = styled.button`
   border-radius: 4px;
   border: none;
   margin: 0 auto;
-  transition: background-color 250ms ease-in;
+  color: ${p => p.theme.colors.text};
   box-shadow: 0 2px 2px grey;
+
+  transition: background-color 250ms ease-in, color 250ms ease-in;
 
   :hover {
     background-color: ${p => p.theme.colors.accent};
+    color: #FFFFFF;
   }
 
   :active {

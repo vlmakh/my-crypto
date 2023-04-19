@@ -9,6 +9,7 @@ export const BtnAdd = styled.button`
   background-color: transparent;
   cursor: pointer;
 `;
+
 export const BackLinkBtn = styled(NavLink)`
   display: inline-grid;
   place-items: center;
@@ -35,8 +36,7 @@ export const Button = styled.button`
 
   transition: color 250ms ease-in;
 
-  :hover,
-  :focus {
+  :hover {
     color: ${p => p.theme.colors.accent};
   }
 `;
@@ -52,12 +52,7 @@ export const ButtonLink = styled(NavLink)`
 
   transition: color 250ms ease-in;
 
-  &.active {
-    color: ${p => p.theme.colors.accent};
-  }
-
-  :hover,
-  :focus {
+  :hover {
     color: ${p => p.theme.colors.accent};
   }
 `;

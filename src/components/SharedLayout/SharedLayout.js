@@ -39,7 +39,7 @@ export const SharedLayout = () => {
     <Layout>
       <Header>
         <Nav>
-          <ButtonLink to="/">Home</ButtonLink>
+          <ButtonLink to="/">MyCrypto</ButtonLink>
           {user.uid ? (
             <UserMenu>
               <p>{user.name || user.email || user.phone} </p>
