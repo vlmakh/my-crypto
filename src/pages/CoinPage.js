@@ -19,6 +19,7 @@ import { useContext } from 'react';
 import { UserData } from 'utils/context';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from 'utils/firebase';
+import { priceFormat } from 'utils/priceFormat';
 
 export default function CoinPage() {
   const { user, watchlist } = useContext(UserData);
@@ -100,14 +101,17 @@ export default function CoinPage() {
           <Descr>ATH: {coin.market_data.ath.usd}$</Descr>
 
           <Descr>
-            Price change 24h: {coin.market_data.price_change_24h.toFixed(2)}$,{' '}
+            Price change 24h: {priceFormat(coin.market_data.price_change_24h)}$,{' '}
             {coin.market_data.price_change_percentage_24h.toFixed(2)}%
           </Descr>
 
-          <Descr>Max: {coin.market_data.max_supply.toFixed(0)}</Descr>
+          <Descr>
+            Max: {(+coin.market_data.total_supply.toFixed(0)).toLocaleString()}
+          </Descr>
 
           <Descr>
-            Circulating: {coin.market_data.circulating_supply.toFixed(0)}
+            Circulating:{' '}
+            {(+coin.market_data.circulating_supply.toFixed(0)).toLocaleString()}
           </Descr>
 
           <Descr>{parse(coin?.description.en)}</Descr>

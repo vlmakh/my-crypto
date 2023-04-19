@@ -45,6 +45,7 @@ export const Percentage = styled.p`
   width: 60px;
   margin-left: 16px;
   text-align: right;
+  font-size: 12px;
   font-weight: 700;
   color: ${p => (p.profit >= 0 ? 'green' : 'red')};
 `;

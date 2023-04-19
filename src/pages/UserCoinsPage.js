@@ -7,6 +7,7 @@ import {
   Symbol,
   Rank,
   Price,
+  Percentage,
 } from 'components/CoinList/CoinList.styled';
 import { userWatchList, searchCoin } from 'utils/api';
 import { useEffect, useState } from 'react';
@@ -94,6 +95,15 @@ export default function UserCoinsPage() {
                     <Price>
                       {priceFormat(coin.market_data.current_price.usd)}
                     </Price>
+
+                    <Percentage
+                      profit={coin.market_data.price_change_percentage_24h}
+                    >
+                      {(+coin.market_data.price_change_percentage_24h).toFixed(
+                        2
+                      )}
+                      %
+                    </Percentage>
 
                     <Rank>{coin.market_cap_rank ?? coin.coingecko_rank}</Rank>
                   </Item>
