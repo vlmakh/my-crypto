@@ -27,7 +27,10 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 let schema = yup.object().shape({
-  coin: yup.string().min(3).required(),
+  coin: yup
+    .string()
+    .min(3, 'Search musthave minimum 3 symbols')
+    .required("Search can't be empty"),
 });
 
 export default function UserCoinsPage() {
