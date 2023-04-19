@@ -46,7 +46,7 @@ export default function UserCoinsPage() {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (!input) {
+    if (!input || input.trim().length <= 2) {
       return;
     }
 
@@ -70,9 +70,8 @@ export default function UserCoinsPage() {
             list
               .sort(
                 (a, b) =>
-                  a.market_cap_rank ??
-                  a.coingecko_rank - b.market_cap_rank ??
-                  b.coingecko_rank
+                  (a.market_cap_rank ?? a.coingecko_rank) -
+                  (b.market_cap_rank ?? b.coingecko_rank)
               )
               .map(coin => (
                 <CoinLink
