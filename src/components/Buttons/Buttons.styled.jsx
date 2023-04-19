@@ -8,6 +8,10 @@ export const BtnAdd = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+
+  :hover {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 export const BackLinkBtn = styled(NavLink)`

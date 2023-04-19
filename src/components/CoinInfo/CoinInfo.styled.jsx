@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 export const CoinPageWrap = styled.div`
-  margin: 0 auto;  
-  max-width: 784px;
-`
+  margin: 0 auto;
+  width: 784px;
+`;
 
 export const TopBar = styled.div`
   display: flex;
@@ -13,25 +13,25 @@ export const TopBar = styled.div`
 `;
 
 export const Image = styled.img`
-  margin: 0 auto;
+  margin: 0 16px;
 `;
 
 export const Symbol = styled.p`
-  margin-top: 16px;
   text-transform: uppercase;
   font-size: 24px;
   font-weight: 700;
 `;
 
 export const Name = styled.p`
-  margin-top: 16px;`;
+`;
 
 export const Rank = styled.p`
-  margin-top: 16px;
-  
+  width: 100px;
+  text-align: right;
 `;
 
 export const Price = styled.p`
+  text-align: center;
   margin-top: 16px;
   font-weight: 700;
 `;

@@ -38,14 +38,6 @@ export const HomePage = () => {
     setSearchQuery({ page: e.selected + 1 });
   };
 
-  // const handleSearch = () => {
-  //   return list.filter(
-  //     coin =>
-  //       coin.name.toLowerCase().includes('') ||
-  //       coin.symbol.toLowerCase().includes('')
-  //   );
-  // };
-
   return (
     <Box mt={5} textAlign="center">
       <List>

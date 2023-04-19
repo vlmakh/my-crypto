@@ -42,10 +42,11 @@ export default function CoinPage() {
 
   const addToWatchlist = async () => {
     const coinRef = doc(db, 'watchlist', user.uid);
+
     try {
       await setDoc(
         coinRef,
-        { coins: watchlist ? [...watchlist, coin?.id] : [coin?.id] },
+        { coins: watchlist ? [...watchlist, coin.id] : [coin.id] },
         { merge: true }
       );
     } catch (error) {
@@ -55,10 +56,11 @@ export default function CoinPage() {
 
   const removeFromWatchlist = async () => {
     const coinRef = doc(db, 'watchlist', user.uid);
+
     try {
       await setDoc(
         coinRef,
-        { coins: watchlist.filter(coinId => coinId !== coin?.id) },
+        { coins: watchlist.filter(coinId => coinId !== coin.id) },
         { merge: true }
       );
     } catch (error) {
@@ -83,12 +85,30 @@ export default function CoinPage() {
       </TopBar>
 
       {coin && (
-        <Box textAlign="center" mt={4}>
-          <Image src={coin?.image.large} alt={coin?.name} width="100" />
-          <Symbol>{coin.symbol}</Symbol>
-          <Name>{coin.name}</Name>
-          <Rank>rank: {coin.market_cap_rank}</Rank>
-          <Price>{coin.market_data.current_price.usd} USD</Price>
+        <Box mt={4}>
+          <Box display="flex" mx="auto" width="300px" alignItems="center">
+            <Rank>rank: {coin.market_cap_rank}</Rank>
+            <Image src={coin?.image.large} alt={coin?.name} width="100" />
+            <Box width="100px">
+              <Symbol>{coin.symbol}</Symbol>
+              <Name>{coin.name}</Name>
+            </Box>
+          </Box>
+
+          <Price>{coin.market_data.current_price.usd}$</Price>
+
+          <Descr>ATH: {coin.market_data.ath.usd}$</Descr>
+
+          <Descr>
+            Price change 24h: {coin.market_data.price_change_24h.toFixed(2)}$,{' '}
+            {coin.market_data.price_change_percentage_24h.toFixed(2)}%
+          </Descr>
+
+          <Descr>Max: {coin.market_data.max_supply.toFixed(0)}</Descr>
+
+          <Descr>
+            Circulating: {coin.market_data.circulating_supply.toFixed(0)}
+          </Descr>
 
           <Descr>{parse(coin?.description.en)}</Descr>
         </Box>
