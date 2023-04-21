@@ -20,15 +20,14 @@ import { UserData } from 'utils/context';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from 'utils/firebase';
 import { priceFormat } from 'utils/priceFormat';
-import { BallTriangle } from 'react-loader-spinner';
+import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
 
 export default function CoinPage() {
-  const { user, watchlist } = useContext(UserData);
+  const { user, watchlist, isLoading, setIsLoading } = useContext(UserData);
   const params = useParams();
   const [coin, setCoin] = useState(null);
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -46,7 +45,7 @@ export default function CoinPage() {
     return () => {
       controller.abort();
     };
-  }, [params.coinId]);
+  }, [params.coinId, setIsLoading]);
 
   const inWatchlist = watchlist.includes(coin?.id);
 
@@ -94,20 +93,7 @@ export default function CoinPage() {
         )}
       </TopBar>
 
-      {isLoading && (
-        <Box pt={5} display="flex" justifyContent="center">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            wrapperClass={{}}
-            wrapperStyle=""
-            visible={true}
-          />
-        </Box>
-      )}
+      {isLoading && <LoadingSpinner />}
 
       {coin && (
         <Box mt={4}>

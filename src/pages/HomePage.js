@@ -10,13 +10,15 @@ import {
   Percentage,
 } from 'components/CoinList/CoinList.styled';
 import { coinList } from 'utils/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { priceFormat } from 'utils/priceFormat';
-import { BallTriangle } from 'react-loader-spinner';
+import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
+import { UserData } from 'utils/context';
 
 export const HomePage = () => {
+  const { isLoading, setIsLoading } = useContext(UserData);
   const [list, setList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [searchQuery, setSearchQuery] = useSearchParams();
@@ -24,7 +26,7 @@ export const HomePage = () => {
     ? Number(searchQuery.get('page'))
     : 1;
   const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState('');
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export const HomePage = () => {
     return () => {
       controller.abort();
     };
-  }, [currentPage]);
+  }, [currentPage, setIsLoading]);
 
   const handlePageClick = e => {
     setSearchQuery({ page: e.selected + 1 });
@@ -53,18 +55,7 @@ export const HomePage = () => {
       {isError && <h2>{isError}</h2>}
 
       {isLoading ? (
-        <Box pt={5} display="flex" justifyContent="center">
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
-            color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
-            wrapperClass={{}}
-            wrapperStyle=""
-            visible={true}
-          />
-        </Box>
+        <LoadingSpinner />
       ) : (
         <List>
           {list.map(coin => (

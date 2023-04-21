@@ -26,7 +26,7 @@ import {
 import { IoIosCloseCircle } from 'react-icons/io';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { BallTriangle } from 'react-loader-spinner';
+import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
 
 let schema = yup.object().shape({
   coin: yup
@@ -76,20 +76,7 @@ export default function UserCoinsPage() {
       <Box mt={5} textAlign="center">
         {isError && <h2>{isError}</h2>}
 
-        {isLoading && (
-          <Box pt={5} display="flex" justifyContent="center">
-            <BallTriangle
-              height={100}
-              width={100}
-              radius={5}
-              color="#4fa94d"
-              ariaLabel="ball-triangle-loading"
-              wrapperClass={{}}
-              wrapperStyle=""
-              visible={true}
-            />
-          </Box>
-        )}
+        {isLoading && <LoadingSpinner />}
 
         <List>
           {list &&

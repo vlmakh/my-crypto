@@ -17,6 +17,7 @@ const savedUser = JSON.parse(localStorage.getItem('mycrypto'));
 export const App = () => {
   const [user, setUser] = useState(savedUser ?? {});
   const [watchlist, setWatchlist] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     localStorage.setItem('mycrypto', JSON.stringify(user));
@@ -39,7 +40,7 @@ export const App = () => {
   
   return (
     <ThemeProvider theme={theme}>
-      <UserData.Provider value={{ user, setUser, watchlist }}>
+      <UserData.Provider value={{ user, setUser, watchlist, isLoading, setIsLoading }}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
