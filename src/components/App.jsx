@@ -9,15 +9,14 @@ import { onSnapshot, doc } from "firebase/firestore";
 import { db } from 'utils/firebase';
 
 const CoinPage = lazy(() => import('pages/CoinPage'));
-const UserCoinsPage = lazy(() => import('pages/UserCoinsPage'));
+const WatchlistPage = lazy(() => import('pages/WatchlistPage'));
+
 
 const savedUser = JSON.parse(localStorage.getItem('mycrypto'));
 
 export const App = () => {
   const [user, setUser] = useState(savedUser ?? {});
   const [watchlist, setWatchlist] = useState([]);
-
-  // console.log(user)
 
   useEffect(() => {
     localStorage.setItem('mycrypto', JSON.stringify(user));
@@ -26,7 +25,6 @@ export const App = () => {
       const coinRef = doc(db, "watchlist", user.uid);
       const unsubscribe = onSnapshot(coinRef, (coin) => {
         if (coin.exists()) {
-          // console.log(coin.data().coins);
           setWatchlist(coin.data().coins);
         } else {
           console.log("No Items in Watchlist");
@@ -46,7 +44,8 @@ export const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
             <Route path="/:coinId" element={<CoinPage />} />
-            <Route path="/user" element={<UserCoinsPage />} />
+            <Route path="/watchlist" element={<WatchlistPage />} />
+            
           </Route>
         </Routes>
       </UserData.Provider>

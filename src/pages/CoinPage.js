@@ -106,7 +106,7 @@ export default function CoinPage() {
           </Descr>
 
           <Descr>
-            Max: {(+coin.market_data.total_supply.toFixed(0)).toLocaleString()}
+            Max: {(+coin.market_data.max_supply.toFixed(0)).toLocaleString()}
           </Descr>
 
           <Descr>
