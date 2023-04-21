@@ -57,7 +57,7 @@ export default function UserCoinsPage() {
     return () => {
       controller.abort();
     };
-  }, [watchlist]);
+  }, [setIsLoading, watchlist]);
 
   const handleSubmit = values => {
     searchCoin(values.coin)

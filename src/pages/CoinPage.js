@@ -24,11 +24,12 @@ import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
 import { formatDate } from 'utils/formatDate';
 
 export default function CoinPage() {
-  const { user, watchlist, isLoading, setIsLoading } = useContext(UserData);
+  const { user, watchlist } = useContext(UserData);
   const params = useParams();
   const [coin, setCoin] = useState(null);
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState('');
 
   useEffect(() => {

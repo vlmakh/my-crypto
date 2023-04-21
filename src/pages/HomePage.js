@@ -10,15 +10,13 @@ import {
   Percentage,
 } from 'components/CoinList/CoinList.styled';
 import { coinList } from 'utils/api';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { PaginationStyled } from 'components/Pagination/Pagination';
 import { formatPrice } from 'utils/formatPrice';
 import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
-import { UserData } from 'utils/context';
 
 export const HomePage = () => {
-  const { isLoading, setIsLoading } = useContext(UserData);
   const [list, setList] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [searchQuery, setSearchQuery] = useSearchParams();
@@ -27,6 +25,7 @@ export const HomePage = () => {
     : 1;
   const location = useLocation();
   const [isError, setIsError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
