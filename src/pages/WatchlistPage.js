@@ -18,11 +18,11 @@ import { useLocation, Navigate } from 'react-router-dom';
 import {
   SearchForm,
   SearchInput,
-  SearchBtn,
   ClearBtn,
   Label,
   StyledErrorMsg,
 } from 'components/Search/Search.styled';
+import { Button } from 'components/Buttons/Buttons.styled';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -79,7 +79,7 @@ export default function UserCoinsPage() {
         {isLoading && <LoadingSpinner />}
 
         <List>
-          {list &&
+          {list[0] &&
             list
               .sort(
                 (a, b) =>
@@ -133,12 +133,14 @@ export default function UserCoinsPage() {
         validationSchema={schema}
       >
         <SearchForm>
+          <Button type="submit">Search</Button>
+
           <Box flexGrow="1">
             <Label htmlFor="coin">
               <SearchInput
                 name="coin"
                 type="text"
-                placeholder="coin name or symbol"
+                placeholder="by coin name or symbol"
                 autoComplete="off"
               />
               <ClearBtn type="reset" onClick={handleReset}>
@@ -147,7 +149,6 @@ export default function UserCoinsPage() {
               <StyledErrorMsg component="div" name="coin" />
             </Label>
           </Box>
-          <SearchBtn type="submit">Search</SearchBtn>
         </SearchForm>
       </Formik>
 

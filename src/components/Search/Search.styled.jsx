@@ -34,20 +34,6 @@ export const ClearBtn = styled.button`
   }
 `;
 
-export const SearchBtn = styled.button`
-  font-weight: 700;
-  padding: 4px 8px;
-  color: ${p => p.theme.colors.textSecondary};
-  
-  cursor: pointer;
-
-  transition: color 250ms linear;
-
-  :hover {
-    color: ${p => p.theme.colors.accent};
-  }
-`;
-
 export const Label = styled.label`
   position: relative;
   display: flex;
