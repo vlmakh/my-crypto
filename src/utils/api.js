@@ -4,15 +4,18 @@ const MAIN_URL = process.env.REACT_APP_MAIN_URL;
 
 const currency = 'USD';
 
-const coinList = async page => {
+const coinList = async (page, abortSignal) => {
   const response = await axios.get(
-    `${MAIN_URL}/coins/markets?vs_currency=USD&per_page=10&page=${page}`
+    `${MAIN_URL}/coins/markets?vs_currency=USD&per_page=10&page=${page}`,
+    { signal: abortSignal }
   );
   return response.data;
 };
 
-const singleCoin = async id => {
-  const response = await axios.get(`${MAIN_URL}/coins/${id}`);
+const singleCoin = async (id, abortSignal) => {
+  const response = await axios.get(`${MAIN_URL}/coins/${id}`, {
+    signal: abortSignal,
+  });
   return response.data;
 };
 
@@ -23,14 +26,14 @@ const historicalChart = async (id, days = 365) => {
   return response.data;
 };
 
-const userWatchList = async array => {
+const userWatchList = async (array, abortSignal) => {
   const arrayOfCoins = array.map(async coinId => {
     return await axios
-      .get(`${MAIN_URL}/coins/${coinId}`)
+      .get(`${MAIN_URL}/coins/${coinId}`, { signal: abortSignal })
       .then(response => {
         return response.data;
       })
-      .catch(error => console.log(error));
+      .catch(error => {});
   });
 
   const response = await Promise.all(arrayOfCoins);

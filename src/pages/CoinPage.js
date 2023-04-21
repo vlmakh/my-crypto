@@ -20,6 +20,7 @@ import { UserData } from 'utils/context';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from 'utils/firebase';
 import { priceFormat } from 'utils/priceFormat';
+import { BallTriangle } from 'react-loader-spinner';
 
 export default function CoinPage() {
   const { user, watchlist } = useContext(UserData);
@@ -27,16 +28,24 @@ export default function CoinPage() {
   const [coin, setCoin] = useState(null);
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    singleCoin(params.coinId)
+    const controller = new AbortController();
+
+    singleCoin(params.coinId, controller.signal)
       .then(data => {
         setCoin(data);
         document.title = `My Crypto | ${data.name}`;
       })
       .catch(error => {
         console.log(error.message);
-      });
+      })
+      .finally(() => setIsLoading(false));
+
+    return () => {
+      controller.abort();
+    };
   }, [params.coinId]);
 
   const inWatchlist = watchlist.includes(coin?.id);
@@ -85,6 +94,21 @@ export default function CoinPage() {
         )}
       </TopBar>
 
+      {isLoading && (
+        <Box pt={5} display="flex" justifyContent="center">
+          <BallTriangle
+            height={100}
+            width={100}
+            radius={5}
+            color="#4fa94d"
+            ariaLabel="ball-triangle-loading"
+            wrapperClass={{}}
+            wrapperStyle=""
+            visible={true}
+          />
+        </Box>
+      )}
+
       {coin && (
         <Box mt={4}>
           <Box display="flex" mx="auto" width="300px" alignItems="center">
@@ -106,7 +130,10 @@ export default function CoinPage() {
           </Descr>
 
           <Descr>
-            Max: {(+coin.market_data.max_supply.toFixed(0)).toLocaleString()}
+            Max:{' '}
+            {coin.market_data.max_supply
+              ? (+coin.market_data.max_supply.toFixed(0)).toLocaleString()
+              : (+coin.market_data.total_supply.toFixed(0)).toLocaleString()}
           </Descr>
 
           <Descr>

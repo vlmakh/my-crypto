@@ -15,6 +15,8 @@ import { useContext } from 'react';
 import { UserData } from 'utils/context';
 import { logout } from 'utils/loginOperations';
 import { Button, ButtonLink } from 'components/Buttons/Buttons.styled';
+import { Box } from 'components/Box/Box';
+import { BallTriangle } from 'react-loader-spinner';
 
 export const SharedLayout = () => {
   const { user, setUser } = useContext(UserData);
@@ -54,7 +56,22 @@ export const SharedLayout = () => {
         </Nav>
       </Header>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <Box pt={5} width="100vw" display="flex" justifyContent="center">
+            <BallTriangle
+              height={100}
+              width={100}
+              radius={5}
+              color="#4fa94d"
+              ariaLabel="ball-triangle-loading"
+              wrapperClass={{}}
+              wrapperStyle=""
+              visible={true}
+            />
+          </Box>
+        }
+      >
         <Outlet />
       </Suspense>
 

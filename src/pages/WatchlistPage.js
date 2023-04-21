@@ -26,6 +26,7 @@ import {
 import { IoIosCloseCircle } from 'react-icons/io';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { BallTriangle } from 'react-loader-spinner';
 
 let schema = yup.object().shape({
   coin: yup
@@ -39,15 +40,23 @@ export default function UserCoinsPage() {
   const [list, setList] = useState([]);
   const location = useLocation();
   const [searchList, setSearchList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState('');
 
   useEffect(() => {
-    userWatchList(watchlist)
+    const controller = new AbortController();
+
+    userWatchList(watchlist, controller.signal)
       .then(data => {
         setList(data);
 
         document.title = `My Crypto | Watchlist`;
       })
-      .catch(error => {});
+      .catch(error => setIsError(error.message))
+      .finally(() => setIsLoading(false));
+    return () => {
+      controller.abort();
+    };
   }, [watchlist]);
 
   const handleSubmit = values => {
@@ -65,6 +74,23 @@ export default function UserCoinsPage() {
       {!user.uid && <Navigate to="/" />}
 
       <Box mt={5} textAlign="center">
+        {isError && <h2>{isError}</h2>}
+
+        {isLoading && (
+          <Box pt={5} display="flex" justifyContent="center">
+            <BallTriangle
+              height={100}
+              width={100}
+              radius={5}
+              color="#4fa94d"
+              ariaLabel="ball-triangle-loading"
+              wrapperClass={{}}
+              wrapperStyle=""
+              visible={true}
+            />
+          </Box>
+        )}
+
         <List>
           {list &&
             list
