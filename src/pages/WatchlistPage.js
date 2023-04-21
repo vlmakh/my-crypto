@@ -11,7 +11,7 @@ import {
 } from 'components/CoinList/CoinList.styled';
 import { userWatchList, searchCoin } from 'utils/api';
 import { useEffect, useState } from 'react';
-import { priceFormat } from 'utils/priceFormat';
+import { formatPrice } from 'utils/formatPrice';
 import { useContext } from 'react';
 import { UserData } from 'utils/context';
 import { useLocation, Navigate } from 'react-router-dom';
@@ -52,7 +52,7 @@ export default function UserCoinsPage() {
 
         document.title = `My Crypto | Watchlist`;
       })
-      .catch(error => setIsError(error.message))
+      .catch(error => setIsError('Network error'))
       .finally(() => setIsLoading(false));
     return () => {
       controller.abort();
@@ -106,7 +106,7 @@ export default function UserCoinsPage() {
                     </Box>
 
                     <Price>
-                      {priceFormat(coin.market_data.current_price.usd)}
+                      {formatPrice(coin.market_data.current_price.usd)}
                     </Price>
 
                     <Percentage

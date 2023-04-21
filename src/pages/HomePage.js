@@ -13,7 +13,7 @@ import { coinList } from 'utils/api';
 import { useEffect, useState, useContext } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { PaginationStyled } from 'components/Pagination/Pagination';
-import { priceFormat } from 'utils/priceFormat';
+import { formatPrice } from 'utils/formatPrice';
 import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
 import { UserData } from 'utils/context';
 
@@ -26,7 +26,6 @@ export const HomePage = () => {
     ? Number(searchQuery.get('page'))
     : 1;
   const location = useLocation();
-  // const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState('');
 
   useEffect(() => {
@@ -38,7 +37,7 @@ export const HomePage = () => {
         setTotalPages(100);
         document.title = `My Crypto`;
       })
-      .catch(error => setIsError(error.message))
+      .catch(error => setIsError('Network error'))
       .finally(() => setIsLoading(false));
 
     return () => {
@@ -72,7 +71,7 @@ export const HomePage = () => {
                   <Name>{coin.name}</Name>
                 </Box>
 
-                <Price>{priceFormat(coin.current_price)}</Price>
+                <Price>{formatPrice(coin.current_price)}</Price>
                 <Percentage profit={coin.price_change_percentage_24h}>
                   {(+coin.price_change_percentage_24h).toFixed(2)}%
                 </Percentage>

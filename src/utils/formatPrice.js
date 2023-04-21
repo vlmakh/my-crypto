@@ -1,17 +1,19 @@
-export const priceFormat = price => {
-  if (price >= 10) {
+export const formatPrice = price => {
+  const value = Math.abs(price);
+
+  if (value >= 10) {
     return price.toFixed(0);
   }
-  if (price < 10 && price > 1) {
+  if (value < 10 && value > 1) {
     return price.toFixed(1);
   }
-  if (price < 0.0001) {
+  if (value < 0.0001) {
     return price.toFixed(8);
   }
-  if (+price < 0.01) {
+  if (value < 0.01) {
     return price.toFixed(4);
   }
-  if (+price < 0.1) {
+  if (value < 0.1) {
     return price.toFixed(3);
   } else {
     return price.toFixed(2);

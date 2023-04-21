@@ -40,4 +40,10 @@ export const Descr = styled.p`
   margin-top: 16px;
   padding: 0 16px;
   text-align: justify;
+
+  a {
+    text-decoration: none;
+    color: ${p => p.theme.colors.text};
+    font-weight: 700;
+  }
 `;

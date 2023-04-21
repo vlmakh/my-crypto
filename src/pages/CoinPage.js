@@ -19,8 +19,9 @@ import { useContext } from 'react';
 import { UserData } from 'utils/context';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from 'utils/firebase';
-import { priceFormat } from 'utils/priceFormat';
+import { formatPrice } from 'utils/formatPrice';
 import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
+import { formatDate } from 'utils/formatDate';
 
 export default function CoinPage() {
   const { user, watchlist, isLoading, setIsLoading } = useContext(UserData);
@@ -28,6 +29,7 @@ export default function CoinPage() {
   const [coin, setCoin] = useState(null);
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/');
+  const [isError, setIsError] = useState('');
 
   useEffect(() => {
     const controller = new AbortController();
@@ -37,9 +39,7 @@ export default function CoinPage() {
         setCoin(data);
         document.title = `My Crypto | ${data.name}`;
       })
-      .catch(error => {
-        console.log(error.message);
-      })
+      .catch(error => setIsError('Network error'))
       .finally(() => setIsLoading(false));
 
     return () => {
@@ -93,6 +93,8 @@ export default function CoinPage() {
         )}
       </TopBar>
 
+      {isError && <h2>{isError}</h2>}
+
       {isLoading && <LoadingSpinner />}
 
       {coin && (
@@ -108,11 +110,14 @@ export default function CoinPage() {
 
           <Price>{coin.market_data.current_price.usd}$</Price>
 
-          <Descr>ATH: {coin.market_data.ath.usd}$</Descr>
+          <Descr>
+            Price change 24h: {formatPrice(coin.market_data.price_change_24h)}
+            $, {coin.market_data.price_change_percentage_24h.toFixed(2)}%
+          </Descr>
 
           <Descr>
-            Price change 24h: {priceFormat(coin.market_data.price_change_24h)}$,{' '}
-            {coin.market_data.price_change_percentage_24h.toFixed(2)}%
+            ATH: {formatPrice(coin.market_data.ath.usd)}$,{' '}
+            {formatDate(coin.market_data.ath_date.usd)}
           </Descr>
 
           <Descr>
@@ -128,6 +133,12 @@ export default function CoinPage() {
           </Descr>
 
           <Descr>{parse(coin?.description.en)}</Descr>
+
+          <Descr>
+            <a href={coin?.links?.homepage} target="_blank" rel="noreferrer">
+              {coin?.links?.homepage}
+            </a>
+          </Descr>
         </Box>
       )}
     </CoinPageWrap>
