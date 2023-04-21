@@ -117,8 +117,8 @@ export default function CoinPage() {
           </Descr>
 
           <Descr>
-            ATH: {formatPrice(coin.market_data.ath.usd)}$,{' '}
-            {formatDate(coin.market_data.ath_date.usd)}
+            ATH, {formatDate(coin.market_data.ath_date.usd)}:{' '}
+            {formatPrice(coin.market_data.ath.usd)}$
           </Descr>
 
           <Descr>
@@ -137,7 +137,7 @@ export default function CoinPage() {
 
           <Descr>
             <a href={coin?.links?.homepage} target="_blank" rel="noreferrer">
-              {coin?.links?.homepage}
+              {coin?.links?.homepage[0]}
             </a>
           </Descr>
         </Box>
