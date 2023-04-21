@@ -100,7 +100,7 @@ export default function CoinPage() {
       {coin && (
         <Box mt={4}>
           <Box display="flex" mx="auto" width="300px" alignItems="center">
-            <Rank>rank: {coin.market_cap_rank}</Rank>
+            <Rank>rank: {coin.market_cap_rank ?? coin.coingecko_rank}</Rank>
             <Image src={coin?.image.large} alt={coin?.name} width="100" />
             <Box width="100px">
               <Symbol>{coin.symbol}</Symbol>

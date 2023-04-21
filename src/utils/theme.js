@@ -1,7 +1,7 @@
 export const theme = {
   colors: {
     bcgMain: '#FFFFFF',
-    accent: '#0000FF', // blue
+    accent: '#F7A600', //
     text: '#212121',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],

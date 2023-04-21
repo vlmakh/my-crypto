@@ -8,7 +8,7 @@ export const LoadingSpinner = () => {
         height={100}
         width={100}
         radius={5}
-        color="#4fa94d"
+        color="#F7A600"
         ariaLabel="ball-triangle-loading"
         wrapperClass={{}}
         wrapperStyle=""
