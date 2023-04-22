@@ -5,10 +5,12 @@ import {
   Item,
   Name,
   Symbol,
-  Rank,
-  Percentage,
 } from 'components/CoinList/CoinList.styled';
-import { WatchTable } from 'components/Watchlist/Watchlist.styled';
+import {
+  WatchTable,
+  Percentage,
+  Rank,
+} from 'components/Watchlist/Watchlist.styled';
 import { userWatchList, searchCoin } from 'utils/api';
 import { useEffect, useState } from 'react';
 import { formatPrice } from 'utils/formatPrice';
@@ -105,19 +107,17 @@ export default function UserCoinsPage() {
                 return (
                   <tr key={coin.id}>
                     <td>
-                      <img
-                        src={coin.image.small}
-                        alt={coin.name}
-                        width="50"
-                        height="50"
-                      />
+                      <CoinLink to={`/${coin.id}`} state={{ from: location }}>
+                        <img
+                          src={coin.image.small}
+                          alt={coin.name}
+                          width="50"
+                          height="50"
+                        />
+                      </CoinLink>
                     </td>
                     <td>
-                      <CoinLink
-                        to={`/${coin.id}`}
-                        state={{ from: location }}
-                        key={coin.id}
-                      >
+                      <CoinLink to={`/${coin.id}`} state={{ from: location }}>
                         <Box ml={5} textAlign="left" width="160px">
                           <Symbol>{coin.symbol}</Symbol>
                           <Name>{coin.name}</Name>
@@ -155,7 +155,9 @@ export default function UserCoinsPage() {
                         %
                       </Percentage>
                     </td>
-                    <td>{coin.market_cap_rank ?? coin.coingecko_rank}</td>
+                    <td>
+                      <Rank>{coin.market_cap_rank ?? coin.coingecko_rank}</Rank>
+                    </td>
                   </tr>
                 );
               })}

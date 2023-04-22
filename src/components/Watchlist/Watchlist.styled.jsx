@@ -21,3 +21,13 @@ export const WatchTable = styled.table`
     width: 50px;
   }
 `;
+
+export const Percentage = styled.p`  
+  font-size: 12px;
+  font-weight: 700;
+  color: ${p => (p.profit >= 0 ? 'green' : 'red')};
+`;
+
+export const Rank = styled.p`  
+  font-size: 12px;
+`;
