@@ -12,8 +12,7 @@ export const WatchTable = styled.table`
 
   td {
     width: 100px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 14px;
     border: 1px solid darkgrey;
     text-align: center;
   }
@@ -21,10 +20,4 @@ export const WatchTable = styled.table`
   td:first-of-type {
     width: 50px;
   }
-
-  /*
-  td:nth-of-type(2) {
-    text-align: right;
-    padding-right: 60px;
-  } */
 `;
