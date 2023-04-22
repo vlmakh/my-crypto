@@ -7,8 +7,7 @@ export const List = styled.ul`
   gap: 8px;
   list-style: none;
   width: 540px;
-  margin: 0 auto;
-  padding: 16px 0;
+  margin: 16px auto;
 `;
 
 export const CoinLink = styled(NavLink)`

@@ -6,9 +6,9 @@ import {
   Name,
   Symbol,
   Rank,
-  Price,
   Percentage,
 } from 'components/CoinList/CoinList.styled';
+import { WatchTable } from 'components/Watchlist/Watchlist.styled';
 import { userWatchList, searchCoin } from 'utils/api';
 import { useEffect, useState } from 'react';
 import { formatPrice } from 'utils/formatPrice';
@@ -77,8 +77,23 @@ export default function UserCoinsPage() {
         {isError && <h2>{isError}</h2>}
 
         {isLoading && <LoadingSpinner />}
+      </Box>
 
-        <List>
+      <WatchTable>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+
+            <th>Price, $</th>
+            <th>change 24h</th>
+            <th>Price, BTC</th>
+            <th>change 24h</th>
+            <th>rank</th>
+          </tr>
+        </thead>
+
+        <tbody>
           {list[0] &&
             list
               .sort(
@@ -86,44 +101,66 @@ export default function UserCoinsPage() {
                   (a.market_cap_rank ?? a.coingecko_rank) -
                   (b.market_cap_rank ?? b.coingecko_rank)
               )
-              .map(coin => (
-                <CoinLink
-                  to={`/${coin.id}`}
-                  state={{ from: location }}
-                  key={coin.id}
-                >
-                  <Item>
-                    <img
-                      src={coin.image.small}
-                      alt={coin.name}
-                      width="50"
-                      height="50"
-                    />
+              .map(coin => {
+                return (
+                  <tr key={coin.id}>
+                    <td>
+                      <img
+                        src={coin.image.small}
+                        alt={coin.name}
+                        width="50"
+                        height="50"
+                      />
+                    </td>
+                    <td>
+                      <CoinLink
+                        to={`/${coin.id}`}
+                        state={{ from: location }}
+                        key={coin.id}
+                      >
+                        <Box ml={5} textAlign="left" width="160px">
+                          <Symbol>{coin.symbol}</Symbol>
+                          <Name>{coin.name}</Name>
+                        </Box>
+                      </CoinLink>
+                    </td>
 
-                    <Box ml={5} textAlign="left" width="160px">
-                      <Symbol>{coin.symbol}</Symbol>
-                      <Name>{coin.name}</Name>
-                    </Box>
+                    <td>
+                      <b>{formatPrice(coin.market_data.current_price.usd)}</b>
+                    </td>
+                    <td>
+                      <Percentage
+                        profit={coin.market_data.price_change_percentage_24h}
+                      >
+                        {coin.market_data.price_change_percentage_24h.toFixed(
+                          1
+                        )}
+                        %
+                      </Percentage>
+                    </td>
 
-                    <Price>
-                      {formatPrice(coin.market_data.current_price.usd)}
-                    </Price>
-
-                    <Percentage
-                      profit={coin.market_data.price_change_percentage_24h}
-                    >
-                      {(+coin.market_data.price_change_percentage_24h).toFixed(
-                        2
-                      )}
-                      %
-                    </Percentage>
-
-                    <Rank>{coin.market_cap_rank ?? coin.coingecko_rank}</Rank>
-                  </Item>
-                </CoinLink>
-              ))}
-        </List>
-      </Box>
+                    <td>
+                      <b>{coin.market_data.current_price.btc.toFixed(8)}</b>
+                    </td>
+                    <td>
+                      <Percentage
+                        profit={
+                          coin.market_data
+                            .price_change_percentage_24h_in_currency.btc
+                        }
+                      >
+                        {coin.market_data.price_change_percentage_24h_in_currency.btc.toFixed(
+                          1
+                        )}
+                        %
+                      </Percentage>
+                    </td>
+                    <td>{coin.market_cap_rank ?? coin.coingecko_rank}</td>
+                  </tr>
+                );
+              })}
+        </tbody>
+      </WatchTable>
 
       <Formik
         onSubmit={handleSubmit}
