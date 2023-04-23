@@ -20,16 +20,21 @@ import { BallTriangle } from 'react-loader-spinner';
 
 export const SharedLayout = () => {
   const { user, setUser } = useContext(UserData);
-  const [showSideBar, setShowSideBar] = useState('110%');
-  const [sideBarBtn, setSideBarBtn] = useState('Login');
+  const [showSideBar, setShowSideBar] = useState({
+    transform: '110%',
+    button: 'Login',
+    visibility: 'hidden',
+  });
 
   const toggleSideBar = () => {
-    if (showSideBar === 0) {
-      setShowSideBar('110%');
-      setSideBarBtn('Login');
+    if (showSideBar.transform === 0) {
+      setShowSideBar({
+        transform: '110%',
+        button: 'Login',
+        visibility: 'hidden',
+      });
     } else {
-      setShowSideBar(0);
-      setSideBarBtn('Close');
+      setShowSideBar({ transform: 0, button: 'Close', visibility: 'visible' });
     }
   };
 
@@ -50,7 +55,7 @@ export const SharedLayout = () => {
             </UserMenu>
           ) : (
             <>
-              <Button onClick={toggleSideBar}>{sideBarBtn}</Button>
+              <Button onClick={toggleSideBar}>{showSideBar.button}</Button>
             </>
           )}
         </Nav>
@@ -82,6 +87,7 @@ export const SharedLayout = () => {
         <p>2023</p>
         <MyLink href="mailto:vlmakh@gmail.com">vlmakh@gmail.com</MyLink>
       </Footer>
+
       <SideBar show={showSideBar}>
         <LoginBtnsBox toggleSideBar={toggleSideBar} />
       </SideBar>

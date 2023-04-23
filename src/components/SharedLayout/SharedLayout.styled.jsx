@@ -62,15 +62,16 @@ export const SideBar = styled.div`
     top: 32px;
     right: 0;
     display: grid;
-    place-items: center;
-        
+    place-items: center;        
     height: calc(100% - 68px);
+    
     background-color: white;
     box-shadow: -4px 0 8px -4px rgba(0, 0, 0, 0.6);
+    
+    transform: translateX(${p => p.show.transform});
+    visibility: ${p => p.show.visibility};
 
-    transform: translateX(${p => p.show});
-
-    transition: transform 300ms ease-in;
+    transition: transform 300ms ease-in, visibility 300ms ease-in;
 `;
 
 export const UserMenu = styled.div`
