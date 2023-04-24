@@ -132,9 +132,9 @@ export default function UserCoinsPage() {
                       <Percentage
                         profit={coin.market_data.price_change_percentage_24h}
                       >
-                        {coin.market_data.price_change_percentage_24h.toFixed(
-                          1
-                        )}
+                        {(
+                          coin.market_data.price_change_percentage_24h ?? 0
+                        ).toFixed(1)}
                         %
                       </Percentage>
                     </td>
@@ -149,9 +149,10 @@ export default function UserCoinsPage() {
                             .price_change_percentage_24h_in_currency.btc
                         }
                       >
-                        {coin.market_data.price_change_percentage_24h_in_currency.btc.toFixed(
-                          1
-                        )}
+                        {(
+                          coin.market_data
+                            .price_change_percentage_24h_in_currency.btc ?? 0
+                        ).toFixed(1)}
                         %
                       </Percentage>
                     </td>
