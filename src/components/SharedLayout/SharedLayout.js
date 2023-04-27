@@ -7,6 +7,7 @@ import {
   MyLink,
   SideBar,
   UserMenu,
+  LogoImg,
 } from './SharedLayout.styled';
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { useState, Suspense } from 'react';
@@ -17,6 +18,7 @@ import { logout } from 'utils/loginOperations';
 import { Button, ButtonLink } from 'components/Buttons/Buttons.styled';
 import { Box } from 'components/Box/Box';
 import { LoadingSpinner } from 'components/LoadingSpinner/LoadingSpinner';
+import { logo } from 'images';
 
 export const SharedLayout = () => {
   const { user, setUser } = useContext(UserData);
@@ -46,7 +48,9 @@ export const SharedLayout = () => {
     <Layout>
       <Header>
         <Nav>
-          <ButtonLink to="/">MyCrypto</ButtonLink>
+          <ButtonLink to="/">
+            <img src={logo} alt="logo" width="24" /> My Crypto
+          </ButtonLink>
           {user.uid ? (
             <UserMenu>
               <p>{user.name || user.email || user.phone} </p>
@@ -80,6 +84,7 @@ export const SharedLayout = () => {
       </Footer>
 
       <SideBar show={showSideBar}>
+        <LogoImg src={logo} alt="logo" width="240" />
         <LoginBtnsBox toggleSideBar={toggleSideBar} />
       </SideBar>
     </Layout>

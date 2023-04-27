@@ -46,6 +46,9 @@ export const Button = styled.button`
 `;
 
 export const ButtonLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
   border: none;
   font-size: 16px;

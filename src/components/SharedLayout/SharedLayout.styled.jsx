@@ -58,23 +58,26 @@ export const MyLink = styled.a`
 `;
 
 export const SideBar = styled.div`
-    position: absolute;
-    top: 32px;
-    right: 0;
-    display: grid;
-    place-items: center;        
-    height: calc(100% - 68px);
-    
-    background-color: white;
-    box-shadow: -4px 0 8px -4px rgba(0, 0, 0, 0.6);
-    
-    transform: translateX(${p => p.show.transform});
-    visibility: ${p => p.show.visibility};
+  position: absolute;
+  top: 32px;
+  right: 0;
+  padding-top: 16px;
+  height: calc(100% - 68px);
 
-    transition: transform 300ms ease-in, visibility 300ms ease-in;
+  background-color: white;
+  box-shadow: -4px 0 8px -4px rgba(0, 0, 0, 0.6);
+
+  transform: translateX(${p => p.show.transform});
+  visibility: ${p => p.show.visibility};
+
+  transition: transform 300ms ease-in, visibility 300ms ease-in;
 `;
 
 export const UserMenu = styled.div`
   display: flex;
   gap: 16px;
+`;
+
+export const LogoImg = styled.img`
+  margin: 0 auto 16px;
 `;
