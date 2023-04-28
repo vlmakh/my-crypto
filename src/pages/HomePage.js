@@ -63,9 +63,9 @@ export const HomePage = () => {
               key={coin.id}
             >
               <Item>
-                <img src={coin.image} alt={coin.name} width="60" height="60" />
+                <img src={coin.image} alt={coin.name} width="50" />
 
-                <Box ml={5} textAlign="left" width="160px">
+                <Box ml={2} textAlign="left" width="160px">
                   <Symbol>{coin.symbol}</Symbol>
                   <Name>{coin.name}</Name>
                 </Box>

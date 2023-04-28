@@ -118,7 +118,7 @@ export default function UserCoinsPage() {
                     </td>
                     <td>
                       <CoinLink to={`/${coin.id}`} state={{ from: location }}>
-                        <Box ml={5} textAlign="left" width="160px">
+                        <Box ml={2} textAlign="left" width="160px">
                           <Symbol>{coin.symbol}</Symbol>
                           <Name>{coin.name}</Name>
                         </Box>

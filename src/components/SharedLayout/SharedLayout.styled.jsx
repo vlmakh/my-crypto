@@ -81,3 +81,9 @@ export const UserMenu = styled.div`
 export const LogoImg = styled.img`
   margin: 0 auto 16px;
 `;
+
+export const LogoText = styled.span`
+  @media screen and (max-width: 479.98px) {
+    display: none;
+  }
+`;

@@ -6,8 +6,12 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 8px;
   list-style: none;
-  width: 540px;
+  /* width: 540px; */
   margin: 16px auto;
+
+  @media screen and (max-width: 480px) {
+    max-width: 480px;
+  }
 `;
 
 export const CoinLink = styled(NavLink)`
@@ -34,7 +38,7 @@ export const Symbol = styled.p`
 `;
 
 export const Price = styled.p`
-  width: 100px;
+  width: 80px;
   margin-left: auto;
   text-align: right;
   font-weight: 700;
@@ -42,7 +46,6 @@ export const Price = styled.p`
 
 export const Percentage = styled.p`
   width: 60px;
-  margin-left: 16px;
   text-align: right;
   font-size: 12px;
   font-weight: 700;
@@ -50,8 +53,7 @@ export const Percentage = styled.p`
 `;
 
 export const Rank = styled.p`
-  width: 32px;
-  margin-left: 16px;
+  width: 44px;
   text-align: right;
   font-size: 12px;
 `;

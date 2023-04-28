@@ -8,6 +8,7 @@ import {
   SideBar,
   UserMenu,
   LogoImg,
+  LogoText,
 } from './SharedLayout.styled';
 import { LogoVM } from 'components/LogoVM/LogoVM';
 import { useState, Suspense } from 'react';
@@ -49,7 +50,8 @@ export const SharedLayout = () => {
       <Header>
         <Nav>
           <ButtonLink to="/">
-            <img src={logo} alt="logo" width="24" /> My Crypto
+            <img src={logo} alt="logo" width="24" />{' '}
+            <LogoText>My Crypto</LogoText>
           </ButtonLink>
           {user.uid ? (
             <UserMenu>
