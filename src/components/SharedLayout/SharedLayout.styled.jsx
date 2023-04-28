@@ -19,6 +19,7 @@ export const Header = styled.div`
   width: 100%;
   height: ${p => p.theme.space[5]}px;
   padding: 0 16px;
+  background-color: ${p => p.theme.colors.bcgMain};
 `;
 
 export const Nav = styled.nav`

@@ -6,7 +6,6 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 8px;
   list-style: none;
-  /* width: 540px; */
   margin: 16px auto;
 
   @media screen and (max-width: 480px) {

@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 export const CoinPageWrap = styled.div`
   margin: 0 auto;
-  width: 784px;
+  max-width: 784px;
+  padding-bottom: 16px;
 `;
 
 export const TopBar = styled.div`
@@ -22,8 +23,7 @@ export const Symbol = styled.p`
   font-weight: 700;
 `;
 
-export const Name = styled.p`
-`;
+export const Name = styled.p``;
 
 export const Rank = styled.p`
   width: 100px;
