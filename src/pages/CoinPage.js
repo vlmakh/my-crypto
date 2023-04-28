@@ -117,7 +117,7 @@ export default function CoinPage() {
           </Descr>
 
           <Descr>
-            ATH, {formatDate(coin.market_data.ath_date.usd)}:{' '}
+            ATH {formatDate(coin.market_data.ath_date.usd)}:{' '}
             {formatPrice(coin.market_data.ath.usd)}$
           </Descr>
 

@@ -14,6 +14,7 @@ export const List = styled.ul`
 `;
 
 export const CoinLink = styled(NavLink)`
+  display: flex;
   text-decoration: none;
   color: #212121;
 `;

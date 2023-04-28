@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
 export const WatchTable = styled.table`
-  margin: 16px auto;
+  margin: 32px auto 16px;
   background-color: white;
+  min-width: 600px;
 
   th {
     text-transform: uppercase;

@@ -85,8 +85,6 @@ export default function UserCoinsPage() {
         <thead>
           <tr>
             <th></th>
-            <th></th>
-
             <th>Price, $</th>
             <th>change 24h</th>
             <th>Price, BTC</th>
@@ -114,10 +112,7 @@ export default function UserCoinsPage() {
                           width="50"
                           height="50"
                         />
-                      </CoinLink>
-                    </td>
-                    <td>
-                      <CoinLink to={`/${coin.id}`} state={{ from: location }}>
+
                         <Box ml={2} textAlign="left" width="160px">
                           <Symbol>{coin.symbol}</Symbol>
                           <Name>{coin.name}</Name>
