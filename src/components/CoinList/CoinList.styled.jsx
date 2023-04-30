@@ -7,10 +7,7 @@ export const List = styled.ul`
   gap: 8px;
   list-style: none;
   margin: 16px auto;
-
-  @media screen and (max-width: 480px) {
-    max-width: 480px;
-  }
+  max-width: 480px;  
 `;
 
 export const CoinLink = styled(NavLink)`
