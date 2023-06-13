@@ -101,58 +101,60 @@ export default function UserCoinsPage() {
                   (a.market_cap_rank ?? a.coingecko_rank) -
                   (b.market_cap_rank ?? b.coingecko_rank)
               )
-              .map(coin => {
+              .map((coin, idx) => {
                 return (
-                  <tr key={coin.id}>
+                  <tr key={coin?.id ?? idx}>
                     <td>
-                      <CoinLink to={`/${coin.id}`} state={{ from: location }}>
+                      <CoinLink to={`/${coin?.id}`} state={{ from: location }}>
                         <img
-                          src={coin.image.small}
-                          alt={coin.name}
+                          src={coin?.image.small}
+                          alt={coin?.name}
                           width="50"
                           height="50"
                         />
 
                         <Box ml={2} textAlign="left" width="160px">
-                          <Symbol>{coin.symbol}</Symbol>
-                          <Name>{coin.name}</Name>
+                          <Symbol>{coin?.symbol}</Symbol>
+                          <Name>{coin?.name}</Name>
                         </Box>
                       </CoinLink>
                     </td>
 
                     <td>
-                      <b>{formatPrice(coin.market_data.current_price.usd)}</b>
+                      <b>{formatPrice(coin?.market_data.current_price.usd)}</b>
                     </td>
                     <td>
                       <Percentage
-                        profit={coin.market_data.price_change_percentage_24h}
+                        profit={coin?.market_data.price_change_percentage_24h}
                       >
                         {(
-                          coin.market_data.price_change_percentage_24h ?? 0
+                          coin?.market_data.price_change_percentage_24h ?? 0
                         ).toFixed(1)}
                         %
                       </Percentage>
                     </td>
 
                     <td>
-                      <b>{coin.market_data.current_price.btc.toFixed(8)}</b>
+                      <b>{coin?.market_data.current_price.btc.toFixed(8)}</b>
                     </td>
                     <td>
                       <Percentage
                         profit={
-                          coin.market_data
+                          coin?.market_data
                             .price_change_percentage_24h_in_currency.btc
                         }
                       >
                         {(
-                          coin.market_data
+                          coin?.market_data
                             .price_change_percentage_24h_in_currency.btc ?? 0
                         ).toFixed(1)}
                         %
                       </Percentage>
                     </td>
                     <td>
-                      <Rank>{coin.market_cap_rank ?? coin.coingecko_rank}</Rank>
+                      <Rank>
+                        {coin?.market_cap_rank ?? coin?.coingecko_rank}
+                      </Rank>
                     </td>
                   </tr>
                 );

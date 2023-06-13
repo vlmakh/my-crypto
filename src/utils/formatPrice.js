@@ -1,4 +1,8 @@
 export const formatPrice = price => {
+  if (!price) {
+    return;
+  }
+
   const value = Math.abs(price);
 
   if (value >= 10) {
